@@ -162,13 +162,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/20/MySQL底层数据结构总结/">MySQL底层数据结构总结</a>
+      <a class="article-title" href="/2019/07/27/MySQL底层数据结构总结/">MySQL底层数据结构总结</a>
     </h1>
   
 
         
-        <a href="/2019/07/20/MySQL底层数据结构总结/" class="archive-article-date">
-  	<time datetime="2019-07-20T07:36:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-20</time>
+        <a href="/2019/07/27/MySQL底层数据结构总结/" class="archive-article-date">
+  	<time datetime="2019-07-27T07:36:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
 </a>
         
       </header>
@@ -176,9 +176,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>#二叉树<br>很容易形成链表，这样与顺序查询无异</p>
-<p>#红黑树<br>不支持大数据量存储，数据大的话树的高度也会变大<br>所查询节点在几层就要查几次</p>
+<p>#红黑树<br>不支持大数据量存储，数据大的话树的高度也会变大<br>所查询节点在几层就要经过几次磁盘IO</p>
 <p>#Hash表<br>单条查询效率很高<br>范围查询效率低</p>
-<p>#B-树<br>节点横向扩展，控制树的高度<br>一个节点可存储n个数据，n可根据数据量调整<br>MySql官方设置n为16K</p>
+<p>#B-Tree<br>节点横向扩展，控制树的高度<br>一个节点可存储n个数据，n可根据数据量调整</p>
+<p>也不支持范围查找</p>
+<p>#B+树<br>1.非叶子节点不存储data，只存储索引，可以放下更多索引<br>2.叶子姐顶啊不储存指针<br>3.顺序访问指针，提高区域访问的性能<br>叶子节点是完整的，并且以链表链接<br>中间节点冗余<br>范围查找效率高<br>MySql官方设置一个节点容量为16K （约为1170个数据）</p>
+<p>#MyISAM搜索引擎<br>（等待更新）</p>
+<p>#inooDB索引<br>（等待更新）</p>
 
       
 
@@ -191,7 +195,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/20/MySQL底层数据结构总结/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/07/27/MySQL底层数据结构总结/">展开全文 >></a>
         </p>
       
 
