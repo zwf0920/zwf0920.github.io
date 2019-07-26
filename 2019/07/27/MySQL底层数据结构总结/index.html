@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="周炜飞的个人博客">
 <meta property="og:description" content="#二叉树很容易形成链表，这样与顺序查询无异 #红黑树不支持大数据量存储，数据大的话树的高度也会变大所查询节点在几层就要经过几次磁盘IO #Hash表单条查询效率很高范围查询效率低 #B-Tree节点横向扩展，控制树的高度一个节点可存储n个数据，n可根据数据量调整 也不支持范围查找 #B+树1.非叶子节点不存储data，只存储索引，可以放下更多索引2.叶子姐顶啊不储存指针3.顺序访问指针，提高区域访">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-26T16:30:23.356Z">
+<meta property="og:updated_time" content="2019-07-26T16:31:45.638Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL底层数据结构总结">
 <meta name="twitter:description" content="#二叉树很容易形成链表，这样与顺序查询无异 #红黑树不支持大数据量存储，数据大的话树的高度也会变大所查询节点在几层就要经过几次磁盘IO #Hash表单条查询效率很高范围查询效率低 #B-Tree节点横向扩展，控制树的高度一个节点可存储n个数据，n可根据数据量调整 也不支持范围查找 #B+树1.非叶子节点不存储data，只存储索引，可以放下更多索引2.叶子姐顶啊不储存指针3.顺序访问指针，提高区域访">
@@ -181,7 +181,7 @@
 <p>也不支持范围查找</p>
 <p>#B+树<br>1.非叶子节点不存储data，只存储索引，可以放下更多索引<br>2.叶子姐顶啊不储存指针<br>3.顺序访问指针，提高区域访问的性能<br>叶子节点是完整的，并且以链表链接<br>中间节点冗余<br>范围查找效率高<br>MySql官方设置一个节点容量为16K （约为1170个数据）</p>
 <p>#MyISAM搜索引擎<br>（等待更新）</p>
-<p>#inooDB索引<br>（等待更新）</p>
+<p>#innoDB索引<br>（等待更新）</p>
 
       
 
