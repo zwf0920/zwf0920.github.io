@@ -155,6 +155,76 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MySQL底层数据结构总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/29/MySQL底层数据结构总结/">MySQL底层数据结构总结</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/29/MySQL底层数据结构总结/" class="archive-article-date">
+  	<time datetime="2020-01-29T07:36:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><p>很容易形成链表，这样与顺序查询无异</p>
+<h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><p>不支持大数据量存储，数据大的话树的高度也会变大<br>所查询节点在几层就要经过几次磁盘IO</p>
+<h1 id="Hash表"><a href="#Hash表" class="headerlink" title="Hash表"></a>Hash表</h1><p>单条查询效率很高<br>范围查询效率低</p>
+<h1 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h1><p>节点横向扩展，控制树的高度<br>一个节点可存储n个数据，n可根据数据量调整</p>
+<p>也不支持范围查找</p>
+<h1 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h1><p>1.非叶子节点不存储data，只存储索引，可以放下更多索引<br>2.叶子姐顶啊不储存指针<br>3.顺序访问指针，提高区域访问的性能<br>叶子节点是完整的，并且以链表链接<br>中间节点冗余<br>范围查找效率高<br>MySql官方设置一个节点容量为16K （约为1170个数据）</p>
+<h1 id="MyISAM搜索引擎"><a href="#MyISAM搜索引擎" class="headerlink" title="MyISAM搜索引擎"></a>MyISAM搜索引擎</h1><p>（等待更新）</p>
+<h1 id="innoDB索引"><a href="#innoDB索引" class="headerlink" title="innoDB索引"></a>innoDB索引</h1><p>（等待更新）</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/29/MySQL底层数据结构总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数据量大时分页查询优化方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -218,19 +288,19 @@
 
 
   
-    <article id="post-MySQL底层数据结构总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql ``的作用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/27/MySQL底层数据结构总结/">MySQL底层数据结构总结</a>
+      <a class="article-title" href="/2019/07/27/mysql ``的作用/">MySQL``的作用</a>
     </h1>
   
 
         
-        <a href="/2019/07/27/MySQL底层数据结构总结/" class="archive-article-date">
+        <a href="/2019/07/27/mysql ``的作用/" class="archive-article-date">
   	<time datetime="2019-07-27T07:36:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
 </a>
         
@@ -238,14 +308,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><p>很容易形成链表，这样与顺序查询无异</p>
-<h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><p>不支持大数据量存储，数据大的话树的高度也会变大<br>所查询节点在几层就要经过几次磁盘IO</p>
-<h1 id="Hash表"><a href="#Hash表" class="headerlink" title="Hash表"></a>Hash表</h1><p>单条查询效率很高<br>范围查询效率低</p>
-<h1 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h1><p>节点横向扩展，控制树的高度<br>一个节点可存储n个数据，n可根据数据量调整</p>
-<p>也不支持范围查找</p>
-<h1 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h1><p>1.非叶子节点不存储data，只存储索引，可以放下更多索引<br>2.叶子姐顶啊不储存指针<br>3.顺序访问指针，提高区域访问的性能<br>叶子节点是完整的，并且以链表链接<br>中间节点冗余<br>范围查找效率高<br>MySql官方设置一个节点容量为16K （约为1170个数据）</p>
-<h1 id="MyISAM搜索引擎"><a href="#MyISAM搜索引擎" class="headerlink" title="MyISAM搜索引擎"></a>MyISAM搜索引擎</h1><p>（等待更新）</p>
-<h1 id="innoDB索引"><a href="#innoDB索引" class="headerlink" title="innoDB索引"></a>innoDB索引</h1><p>（等待更新）</p>
+        <h1 id="MySQL-的作用"><a href="#MySQL-的作用" class="headerlink" title="MySQL``的作用"></a>MySQL``的作用</h1><p>用于转义，某些字段如果是关键字，加上``后可被识别为正常字符</p>
 
       
 
@@ -258,7 +321,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/27/MySQL底层数据结构总结/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/07/27/mysql ``的作用/">展开全文 >></a>
         </p>
       
 
@@ -421,7 +484,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 zwf0920
+    		&copy; 2020 zwf0920
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

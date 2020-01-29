@@ -11,11 +11,11 @@
   <meta name="description" content="二叉树很容易形成链表，这样与顺序查询无异 红黑树不支持大数据量存储，数据大的话树的高度也会变大所查询节点在几层就要经过几次磁盘IO Hash表单条查询效率很高范围查询效率低 B-Tree节点横向扩展，控制树的高度一个节点可存储n个数据，n可根据数据量调整 也不支持范围查找 B+树1.非叶子节点不存储data，只存储索引，可以放下更多索引2.叶子姐顶啊不储存指针3.顺序访问指针，提高区域访问的性能叶">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL底层数据结构总结">
-<meta property="og:url" content="https://zwf0920.github.io/2019/07/27/MySQL底层数据结构总结/index.html">
+<meta property="og:url" content="https://zwf0920.github.io/2020/01/29/MySQL底层数据结构总结/index.html">
 <meta property="og:site_name" content="周炜飞的个人博客">
 <meta property="og:description" content="二叉树很容易形成链表，这样与顺序查询无异 红黑树不支持大数据量存储，数据大的话树的高度也会变大所查询节点在几层就要经过几次磁盘IO Hash表单条查询效率很高范围查询效率低 B-Tree节点横向扩展，控制树的高度一个节点可存储n个数据，n可根据数据量调整 也不支持范围查找 B+树1.非叶子节点不存储data，只存储索引，可以放下更多索引2.叶子姐顶啊不储存指针3.顺序访问指针，提高区域访问的性能叶">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-02T04:19:45.818Z">
+<meta property="og:updated_time" content="2020-01-29T02:01:47.793Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL底层数据结构总结">
 <meta name="twitter:description" content="二叉树很容易形成链表，这样与顺序查询无异 红黑树不支持大数据量存储，数据大的话树的高度也会变大所查询节点在几层就要经过几次磁盘IO Hash表单条查询效率很高范围查询效率低 B-Tree节点横向扩展，控制树的高度一个节点可存储n个数据，n可根据数据量调整 也不支持范围查找 B+树1.非叶子节点不存储data，只存储索引，可以放下更多索引2.叶子姐顶啊不储存指针3.顺序访问指针，提高区域访问的性能叶">
@@ -166,8 +166,8 @@
   
 
         
-        <a href="/2019/07/27/MySQL底层数据结构总结/" class="archive-article-date">
-  	<time datetime="2019-07-27T07:36:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
+        <a href="/2020/01/29/MySQL底层数据结构总结/" class="archive-article-date">
+  	<time datetime="2020-01-29T07:36:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-29</time>
 </a>
         
       </header>
@@ -261,7 +261,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://zwf0920.github.io/2019/07/27/MySQL底层数据结构总结/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zwf0920.github.io/2020/01/29/MySQL底层数据结构总结/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -275,18 +275,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/02/数据量大时分页查询优化方案/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          数据量大时分页查询优化方案
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/18/欢迎使用CSDN-markdown编辑器/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+    <a href="/2019/08/02/数据量大时分页查询优化方案/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据量大时分页查询优化方案</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -342,7 +333,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 zwf0920
+    		&copy; 2020 zwf0920
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
