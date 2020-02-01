@@ -155,34 +155,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-MySQL底层数据结构总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-vue npm install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/29/MySQL底层数据结构总结/">MySQL底层数据结构总结</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/29/MySQL底层数据结构总结/" class="archive-article-date">
-  	<time datetime="2020-01-29T07:36:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-29</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><p>很容易形成链表，这样与顺序查询无异</p>
-<h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><p>不支持大数据量存储，数据大的话树的高度也会变大<br>所查询节点在几层就要经过几次磁盘IO</p>
-<h1 id="Hash表"><a href="#Hash表" class="headerlink" title="Hash表"></a>Hash表</h1><p>单条查询效率很高<br>范围查询效率低</p>
-<h1 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h1><p>节点横向扩展，控制树的高度<br>一个节点可存储n个数据，n可根据数据量调整</p>
-<p>也不支持范围查找</p>
-<h1 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h1><p>1.非叶子节点不存储data，只存储索引，可以放下更多索引<br>2.叶子姐顶啊不储存指针<br>3.顺序访问指针，提高区域访问的性能<br>叶子节点是完整的，并且以链表链接<br>中间节点冗余<br>范围查找效率高<br>MySql官方设置一个节点容量为16K （约为1170个数据）</p>
-<h1 id="MyISAM搜索引擎"><a href="#MyISAM搜索引擎" class="headerlink" title="MyISAM搜索引擎"></a>MyISAM搜索引擎</h1><p>（等待更新）</p>
-<h1 id="innoDB索引"><a href="#innoDB索引" class="headerlink" title="innoDB索引"></a>innoDB索引</h1><p>（等待更新）</p>
+        <p>@[TOC](‘webpack-dev-server’ 不是内部或外部命令，也不是可运行的程序 或批处理文件。报错)<br>最近把项目拉过来的时候 直接npm install——-npm run dev 一直报错：’webpack-dev-server’ 不是内部或外部命令，也不是可运行的程序 或批处理文件</p>
+<p>起初我试着重新装 webpack-dev-server</p>
+<p>然而装完之后会有一个一个的依赖接踵而来 都需要装</p>
+<p>最后上网查了一顿 找到了一篇不错的文章 </p>
+<h1 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h1><p>尝试进行npm install,如果还是不可以就尝试第二种方法，通常是没有装依赖导致的问题。</p>
+<h1 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h1><p>可以通过修改npm的配置文件让npm到另外的pacakge mirror站点去找package，通过如下命令</p>
+<p>$ npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a><br>$ npm config set registry <a href="http://r.cnpmjs.org" target="_blank" rel="noopener">http://r.cnpmjs.org</a><br>或者：npm config set registry <a href="http://registry.npmjs.eu" target="_blank" rel="noopener">http://registry.npmjs.eu</a><br>随后再执行<br>npm install<br>然后就可以运行了</p>
+<p>参考链接：<a href="https://www.cnblogs.com/hanhanours/p/10694692.html" target="_blank" rel="noopener">https://www.cnblogs.com/hanhanours/p/10694692.html</a></p>
 
       
 
@@ -195,7 +180,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/29/MySQL底层数据结构总结/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/02/01/vue npm install/">展开全文 >></a>
         </p>
       
 
@@ -259,6 +244,76 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/02/数据量大时分页查询优化方案/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-MySQL底层数据结构总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/27/MySQL底层数据结构总结/">MySQL底层数据结构总结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/27/MySQL底层数据结构总结/" class="archive-article-date">
+  	<time datetime="2019-07-27T07:36:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><p>很容易形成链表，这样与顺序查询无异</p>
+<h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><p>不支持大数据量存储，数据大的话树的高度也会变大<br>所查询节点在几层就要经过几次磁盘IO</p>
+<h1 id="Hash表"><a href="#Hash表" class="headerlink" title="Hash表"></a>Hash表</h1><p>单条查询效率很高<br>范围查询效率低</p>
+<h1 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h1><p>节点横向扩展，控制树的高度<br>一个节点可存储n个数据，n可根据数据量调整</p>
+<p>也不支持范围查找</p>
+<h1 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h1><p>1.非叶子节点不存储data，只存储索引，可以放下更多索引<br>2.叶子姐顶啊不储存指针<br>3.顺序访问指针，提高区域访问的性能<br>叶子节点是完整的，并且以链表链接<br>中间节点冗余<br>范围查找效率高<br>MySql官方设置一个节点容量为16K （约为1170个数据）</p>
+<h1 id="MyISAM搜索引擎"><a href="#MyISAM搜索引擎" class="headerlink" title="MyISAM搜索引擎"></a>MyISAM搜索引擎</h1><p>（等待更新）</p>
+<h1 id="innoDB索引"><a href="#innoDB索引" class="headerlink" title="innoDB索引"></a>innoDB索引</h1><p>（等待更新）</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/27/MySQL底层数据结构总结/">展开全文 >></a>
         </p>
       
 
