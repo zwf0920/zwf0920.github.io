@@ -155,61 +155,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-vue npm install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>@[TOC](‘webpack-dev-server’ 不是内部或外部命令，也不是可运行的程序 或批处理文件。报错)<br>最近把项目拉过来的时候 直接npm install——-npm run dev 一直报错：’webpack-dev-server’ 不是内部或外部命令，也不是可运行的程序 或批处理文件</p>
-<p>起初我试着重新装 webpack-dev-server</p>
-<p>然而装完之后会有一个一个的依赖接踵而来 都需要装</p>
-<p>最后上网查了一顿 找到了一篇不错的文章 </p>
-<h1 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h1><p>尝试进行npm install,如果还是不可以就尝试第二种方法，通常是没有装依赖导致的问题。</p>
-<h1 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h1><p>可以通过修改npm的配置文件让npm到另外的pacakge mirror站点去找package，通过如下命令</p>
-<p>$ npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a><br>$ npm config set registry <a href="http://r.cnpmjs.org" target="_blank" rel="noopener">http://r.cnpmjs.org</a><br>或者：npm config set registry <a href="http://registry.npmjs.eu" target="_blank" rel="noopener">http://registry.npmjs.eu</a><br>随后再执行<br>npm install<br>然后就可以运行了</p>
-<p>参考链接：<a href="https://www.cnblogs.com/hanhanours/p/10694692.html" target="_blank" rel="noopener">https://www.cnblogs.com/hanhanours/p/10694692.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/01/vue npm install/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-数据量大时分页查询优化方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
