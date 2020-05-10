@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zwf0920.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="常用注解整理（非原创）笔者在代码学习中对注解这一块很陌生，于是在网上找了一些资料摘录下来，方便以后学习过程中查阅，如果有时间会对每个注解都写下使用方法和demo Java内置注解Java 定义了一套注解，共有 7 个，3 个在 java.lang 中，剩下 4 个在 java.lang.annotation 中。 作用在代码的注解是  @Override - 检查该方法是否是重写方法。如果发现其父">
+<meta name="keywords" content="注解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用注解整理（非原创）">
+<meta property="og:url" content="https://zwf0920.github.io/2020/02/10/注解/index.html">
+<meta property="og:site_name" content="zwf0920">
+<meta property="og:description" content="常用注解整理（非原创）笔者在代码学习中对注解这一块很陌生，于是在网上找了一些资料摘录下来，方便以后学习过程中查阅，如果有时间会对每个注解都写下使用方法和demo Java内置注解Java 定义了一套注解，共有 7 个，3 个在 java.lang 中，剩下 4 个在 java.lang.annotation 中。 作用在代码的注解是  @Override - 检查该方法是否是重写方法。如果发现其父">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:updated_time" content="2020-05-10T12:36:48.041Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用注解整理（非原创）">
+<meta name="twitter:description" content="常用注解整理（非原创）笔者在代码学习中对注解这一块很陌生，于是在网上找了一些资料摘录下来，方便以后学习过程中查阅，如果有时间会对每个注解都写下使用方法和demo Java内置注解Java 定义了一套注解，共有 7 个，3 个在 java.lang 中，剩下 4 个在 java.lang.annotation 中。 作用在代码的注解是  @Override - 检查该方法是否是重写方法。如果发现其父">
+<meta name="twitter:image" content="https://common.cnblogs.com/images/copycode.gif">
+
+<link rel="canonical" href="https://zwf0920.github.io/2020/02/10/注解/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>常用注解整理（非原创） | zwf0920</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">zwf0920</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">感受生活，拥抱世界</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2020/02/10/注解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zwf0920">
+      <meta itemprop="description" content="zwf0920个人站，主要涉及java后端和框架技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwf0920">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          常用注解整理（非原创）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-02-10 15:36:37" itemprop="dateCreated datePublished" datetime="2020-02-10T15:36:37+08:00">2020-02-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-10 20:36:48" itemprop="dateModified" datetime="2020-05-10T20:36:48+08:00">2020-05-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/使用参考/" itemprop="url" rel="index"><span itemprop="name">使用参考</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="常用注解整理（非原创）"><a href="#常用注解整理（非原创）" class="headerlink" title="常用注解整理（非原创）"></a>常用注解整理（非原创）</h2><p>笔者在代码学习中对注解这一块很陌生，于是在网上找了一些资料摘录下来，方便以后学习过程中查阅，如果有时间会对每个注解都写下使用方法和demo</p>
+<h3 id="Java内置注解"><a href="#Java内置注解" class="headerlink" title="Java内置注解"></a>Java内置注解</h3><p>Java 定义了一套注解，共有 7 个，3 个在 java.lang 中，剩下 4 个在 java.lang.annotation 中。</p>
+<p><strong>作用在代码的注解是</strong></p>
+<ul>
+<li>@Override - 检查该方法是否是重写方法。如果发现其父类，或者是引用的接口中并没有该方法时，会报编译错误。</li>
+<li>@Deprecated - 标记过时方法。如果使用该方法，会报编译警告。</li>
+<li>@SuppressWarnings - 指示编译器去忽略注解中声明的警告。</li>
+</ul>
+<p>作用在其他注解的注解(或者说 元注解)是:</p>
+<ul>
+<li>@Retention - 标识这个注解怎么保存，是只在代码中，还是编入class文件中，或者是在运行时可以通过反射访问。</li>
+<li>@Documented - 标记这些注解是否包含在用户文档中。</li>
+<li>@Target - 标记这个注解应该是哪种 Java 成员。</li>
+<li>@Inherited - 标记这个注解是继承于哪个注解类(默认 注解并没有继承于任何子类)</li>
+</ul>
+<p>从 Java 7 开始，额外添加了 3 个注解:</p>
+<ul>
+<li>@SafeVarargs - Java 7 开始支持，忽略任何使用参数为泛型变量的方法或构造函数调用产生的警告。</li>
+<li>@FunctionalInterface - Java 8 开始支持，标识一个匿名函数或函数式接口。</li>
+<li>@Repeatable - Java 8 开始支持，标识某注解可以在同一个声明上使用多次。</li>
+</ul>
+<h3 id="Spring-mvc-常用注解"><a href="#Spring-mvc-常用注解" class="headerlink" title="Spring mvc 常用注解"></a>Spring mvc 常用注解</h3><h4 id="一、组件型注解："><a href="#一、组件型注解：" class="headerlink" title="一、组件型注解："></a>一、组件型注解：</h4><ol>
+<li>@Component 在类定义之前添加@Component注解，他会被spring容器识别，并转为bean。</li>
+<li>@Repository 对Dao实现类进行注解 (特殊的@Component)</li>
+<li>@Service 用于对业务逻辑层进行注解， (特殊的@Component)</li>
+<li>@Controller 用于控制层注解 ， (特殊的@Component)</li>
+</ol>
+<p>　以上四种注解都是注解在类上的，被注解的类将被spring初始话为一个bean，然后统一管理。</p>
+<h4 id="二、请求和参数型注解："><a href="#二、请求和参数型注解：" class="headerlink" title="二、请求和参数型注解："></a>二、请求和参数型注解：</h4><ol>
+<li>@RequestMapping：用于处理请求地址映射，可以作用于类和方法上。</li>
+</ol>
+<ul>
+<li><ul>
+<li>value：定义request请求的映射地址</li>
+<li>method：定义地request址请求的方式，包括【GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE, TRACE.】默认接受get请求，如果请求方式和定义的方式不一样则请求无法成功。</li>
+<li>params：定义request请求中必须包含的参数值。</li>
+<li>headers：定义request请求中必须包含某些指定的请求头，如：RequestMapping(value = “/something”, headers = “content-type=text/*”)说明请求中必须要包含”text/html”, “text/plain”这中类型的Content-type头，才是一个匹配的请求。</li>
+<li>consumes：定义请求提交内容的类型。</li>
+<li>produces：指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="meta">@RequestMapping</span>(value=<span class="string">"/requestTest.do"</span>,params = &#123;<span class="string">"name=sdf"</span>&#125;,headers = &#123;<span class="string">"Accept-Encoding=gzip, deflate, br"</span>&#125;,method = RequestMethod.GET)</span><br><span class="line"><span class="number">2</span>     <span class="function"><span class="keyword">public</span> String <span class="title">getIndex</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="number">3</span>         System.out.println(<span class="string">"请求成功"</span>);</span><br><span class="line"><span class="number">4</span>         <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line"><span class="number">5</span>     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>　　　　上面代码表示请求的方式为GET请求，请求参数必须包含name=sdf这一参数，然后请求头中必须有 Accept-Encoding=gzip, deflate, br这个类型头。</p>
+<p> 2.@RequestParam：用于获取传入参数的值</p>
+<ul>
+<li><ul>
+<li>value：参数的名称</li>
+<li>required：定义该传入参数是否必须，默认为true，（和@RequestMapping的params属性有点类似）</li>
+</ul>
+</li>
+</ul>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> 1 @RequestMapping(&quot;/requestParams1.do&quot;)</span><br><span class="line"> 2     public String requestParams1(@RequestParam(required = false) String name)&#123;</span><br><span class="line"> 3         System.out.println(&quot;name = &quot;+name);</span><br><span class="line"> 4         return &quot;index&quot;;</span><br><span class="line"> 5     &#125;</span><br><span class="line"> 6     @RequestMapping(&quot;/requestParams2.do&quot;)</span><br><span class="line"> 7     public String requestParams2(@RequestParam(value = &quot;name&quot;,required = false) String names)&#123;</span><br><span class="line"> 8         System.out.println(&quot;name = &quot;+names);</span><br><span class="line"> 9         return &quot;index&quot;;</span><br><span class="line">10     &#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　　　两种请入参方式是一样的，显示声明value的名称时，入参参数名和value一样，没有显示声明的话，像第一种方式声明的，入参参数名和函数参数变量名一样。</p>
+<p>　　3.@PathViriable：用于定义路径参数值</p>
+<ul>
+<li><ul>
+<li>value：参数的名称</li>
+<li>required：定义传入参数是否为必须值</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;/&#123;myname&#125;/pathVariable2.do&quot;)</span><br><span class="line">    public String pathVariable2(@PathVariable(value = &quot;myname&quot;) String name)&#123;</span><br><span class="line">        System.out.println(&quot;myname = &quot;+name);</span><br><span class="line">        return &quot;index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>　　　　这个路径声明了{myname}作为路径参数，那么这一段路径将为任意值，@PathVariable将可以根据value获取路径的值。</p>
+<p>　　4.@ResponseBody：作用于方法上，可以将整个返回结果以某种格式返回，如json或xml格式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="meta">@RequestMapping</span>(<span class="string">"/&#123;myname&#125;/pathVariable2.do"</span>)</span><br><span class="line"><span class="number">2</span>     <span class="meta">@ResponseBody</span></span><br><span class="line"><span class="number">3</span>     <span class="function"><span class="keyword">public</span> String <span class="title">pathVariable2</span><span class="params">(@PathVariable(value = <span class="string">"myname"</span>)</span> String name)</span>&#123;</span><br><span class="line"><span class="number">4</span>         System.out.println(<span class="string">"myname = "</span>+name);</span><br><span class="line"><span class="number">5</span>         <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line"><span class="number">6</span>     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.@ModelAttribute：用于把参数保存到model中，可以注解方法或参数，注解在方法上的时候，该方法将在处理器方法执行之前执行，然后把返回的对象存放在 session（前提时要有@SessionAttributes注解） 或模型属性中，@ModelAttribute(“attributeName”) 在标记方法的时候指定，若未指定，则使用返回类型的类名称（首字母小写）作为属性名称。　</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">1</span> <span class="meta">@ModelAttribute</span>(<span class="string">"user"</span>)</span><br><span class="line"> <span class="number">2</span>     <span class="function"><span class="keyword">public</span> UserEntity <span class="title">getUser</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="number">3</span>         UserEntity userEntityr = <span class="keyword">new</span> UserEntity();</span><br><span class="line"> <span class="number">4</span>         userEntityr.setUsername(<span class="string">"asdf"</span>);</span><br><span class="line"> <span class="number">5</span>         <span class="keyword">return</span> userEntityr;</span><br><span class="line"> <span class="number">6</span>     &#125;</span><br><span class="line"> <span class="number">7</span> </span><br><span class="line"> <span class="number">8</span>     <span class="meta">@RequestMapping</span>(<span class="string">"/modelTest.do"</span>)</span><br><span class="line"> <span class="number">9</span>     <span class="function"><span class="keyword">public</span> String <span class="title">getUsers</span><span class="params">(@ModelAttribute(<span class="string">"user"</span>)</span> UserEntity user)</span>&#123;</span><br><span class="line"><span class="number">10</span>         System.out.println(user.getUsername());</span><br><span class="line"><span class="number">11</span>         <span class="keyword">return</span> <span class="string">"/index"</span>;</span><br><span class="line"><span class="number">12</span>     &#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　如上代码中，使用了@ModelAttribute(“user”)注解，在执行控制器前执行，然后将生成一个名称为user的model数据，在控制器中我们通过注解在参数上的@ModelAttribute获取参数，然后将model应用到控制器中，在jsp页面中我们同样可以使用它，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 &lt;body&gt;</span><br><span class="line">2     $&#123;user.username&#125;</span><br><span class="line">3 &lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>　　6.@SessionAttributes</p>
+<p>　　默认情况下Spring MVC将模型中的数据存储到request域中。当一个请求结束后，数据就失效了。如果要跨页面使用。那么需要使用到session。而@SessionAttributes注解就可以使得模型中的数据存储一份到session域中。配合@ModelAttribute(“user”)使用的时候,会将对应的名称的model值存到session中，</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> 1 @Controller</span><br><span class="line"> 2 @RequestMapping(&quot;/test&quot;)</span><br><span class="line"> 3 @SessionAttributes(value = &#123;&quot;user&quot;,&quot;test1&quot;&#125;)</span><br><span class="line"> 4 public class LoginController&#123;</span><br><span class="line"> 5     @ModelAttribute(&quot;user&quot;)</span><br><span class="line"> 6     public UserEntity getUser()&#123;</span><br><span class="line"> 7         UserEntity userEntityr = new UserEntity();</span><br><span class="line"> 8         userEntityr.setUsername(&quot;asdf&quot;);</span><br><span class="line"> 9         return userEntityr;</span><br><span class="line">10     &#125;</span><br><span class="line">11 </span><br><span class="line">12     @RequestMapping(&quot;/modelTest.do&quot;)</span><br><span class="line">13     public String getUsers(@ModelAttribute(&quot;user&quot;) UserEntity user ,HttpSession session)&#123;</span><br><span class="line">14         System.out.println(user.getUsername());</span><br><span class="line">15         System.out.println(session.getAttribute(&quot;user&quot;));</span><br><span class="line">16         return &quot;/index&quot;;</span><br><span class="line">17     &#125;</span><br><span class="line">18 &#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　　结合上一个例子的代码，加了@SessionAttributes注解，然后请求了两次，第一次session中不存在属性名为user的值，第二次请求的时候发现session中又有了，这是因为，这是因为第一次请求时，model数据还未保存到session中请求结束返回的时候才保存，在第二次请求的时候已经可以获取上一次的model了，</p>
+<h3 id="Spring常用注解"><a href="#Spring常用注解" class="headerlink" title="Spring常用注解"></a>Spring常用注解</h3><p>使用注解之前要开启自动扫描功能，其中base-package为需要扫描的包(含子包)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;context:component-scan base-package=&quot;cn.test&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>@Configuration把一个类作为一个IoC容器，它的某个方法头上如果注册了@Bean，就会作为这个Spring容器中的Bean。<br>@Scope注解 作用域<br>@Lazy(true) 表示延迟初始化<br>@Service用于标注业务层组件、<br>@Controller用于标注控制层组件（如struts中的action）<br>@Repository用于标注数据访问组件，即DAO组件。<br>@Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。<br>@Scope用于指定scope作用域的（用在类上）<br>@PostConstruct用于指定初始化方法（用在方法上）<br>@PreDestory用于指定销毁方法（用在方法上）<br>@DependsOn：定义Bean初始化及销毁时的顺序<br>@Primary：自动装配时当出现多个Bean候选者时，被注解为@Primary的Bean将作为首选者，否则将抛出异常<br>@Autowired 默认按类型装配，如果我们想使用按名称装配，可以结合@Qualifier注解一起使用。如下：<br>@Autowired @Qualifier(“personDaoBean”) 存在多个实例配合使用<br>@Resource默认按名称装配，当找不到与名称匹配的bean才会按类型装配。<br>@PostConstruct 初始化注解<br>@PreDestroy 摧毁注解 默认 单例 启动就加载<br>@Async异步方法调用</p>
+<p>参考链接：1.<a href="https://www.cnblogs.com/xiaoxi/p/5935009.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaoxi/p/5935009.html</a></p>
+<p>​                   2.<a href="https://www.cnblogs.com/caijh/p/7744604.html" target="_blank" rel="noopener">https://www.cnblogs.com/caijh/p/7744604.html</a></p>
+<p>​                   3.<a href="https://www.runoob.com/w3cnote/java-annotation.html" target="_blank" rel="noopener">https://www.runoob.com/w3cnote/java-annotation.html</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/注解/" rel="tag"># 注解</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/01/vue npm install/" rel="prev" title="webpack-dev-server 不是内部或外部命令，也不是可运行的程序 或批处理文件。报错">
+      <i class="fa fa-chevron-left"></i> webpack-dev-server 不是内部或外部命令，也不是可运行的程序 或批处理文件。报错
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/13/MyBatis 逆向工程/" rel="next" title="MyBatis 逆向工程">
+      MyBatis 逆向工程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用注解整理（非原创）"><span class="nav-number">1.</span> <span class="nav-text">常用注解整理（非原创）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java内置注解"><span class="nav-number">1.1.</span> <span class="nav-text">Java内置注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-mvc-常用注解"><span class="nav-number">1.2.</span> <span class="nav-text">Spring mvc 常用注解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、组件型注解："><span class="nav-number">1.2.1.</span> <span class="nav-text">一、组件型注解：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、请求和参数型注解："><span class="nav-number">1.2.2.</span> <span class="nav-text">二、请求和参数型注解：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring常用注解"><span class="nav-number">1.3.</span> <span class="nav-text">Spring常用注解</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zwf0920</p>
+  <div class="site-description" itemprop="description">zwf0920个人站，主要涉及java后端和框架技术</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zwf0920</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -224,6 +224,945 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2020/04/17/MySql使用参考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zwf0920">
+      <meta itemprop="description" content="zwf0920个人站，主要涉及java后端和框架技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwf0920">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/17/MySql使用参考/" class="post-title-link" itemprop="url">MySQL使用参考</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-04-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-04-17T00:00:00+08:00">2020-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-10 20:06:56" itemprop="dateModified" datetime="2020-05-10T20:06:56+08:00">2020-05-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/使用参考/" itemprop="url" rel="index"><span itemprop="name">使用参考</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="管理数据库结构"><a href="#管理数据库结构" class="headerlink" title="管理数据库结构"></a>管理数据库结构</h3><p>数据库</p>
+<p>1、创建数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> 数据库名 <span class="keyword">default</span> <span class="built_in">character</span> <span class="keyword">set</span> utf8 <span class="keyword">collate</span> utf8_general_ci;</span><br></pre></td></tr></table></figure>
+
+<p>default character set utf8：设置数据库的编码方式，支持中文。</p>
+<p>collate utf8_general_ci：设置数据库的校验字符集</p>
+<p>utf8_general_ci：不区分大小写</p>
+<p>utf8_bin：区分大小写</p>
+<p>2、删除数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> 数据库名;</span><br></pre></td></tr></table></figure>
+
+<p>3、查看数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>;</span><br></pre></td></tr></table></figure>
+
+<p>4、选择数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> 数据库名;</span><br></pre></td></tr></table></figure>
+
+<p>数据表</p>
+<p>1、创建数据表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 表名(</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">int</span>,</span><br><span class="line">	<span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">11</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>2、删除数据表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> 表名;</span><br></pre></td></tr></table></figure>
+
+<p>3、查看数据库所有的表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span>;</span><br></pre></td></tr></table></figure>
+
+<p>4、查看表结构</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">desc 表名;</span><br></pre></td></tr></table></figure>
+
+<p>5、修改数据表的结构</p>
+<ul>
+<li><p>新增一个字段</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">add</span> 字段名 数据类型;</span><br><span class="line">example:</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">user</span> <span class="keyword">add</span> <span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">20</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除一个字段</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">drop</span> 字段名;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改一个字段</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">CHANGE</span> 原字段名 新字段名 字段类型 约束条件</span><br><span class="line">example: </span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> user10 <span class="keyword">CHANGE</span> <span class="keyword">test</span> test1 <span class="built_in">CHAR</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'123'</span>;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>数据</p>
+<p>1、添加数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 表名(字段名<span class="number">1</span>,字段名<span class="number">2.</span>..) <span class="keyword">values</span>(值<span class="number">1</span>,值<span class="number">2.</span>..);</span><br><span class="line">example：</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">user</span>(<span class="keyword">id</span>,<span class="keyword">name</span>) <span class="keyword">values</span>(<span class="number">1</span>,<span class="string">"张三"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>2、查询数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> 表名;</span><br></pre></td></tr></table></figure>
+
+<p>3、修改数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> 表名 <span class="keyword">set</span> 字段名 = 修改值;</span><br></pre></td></tr></table></figure>
+
+<p>4、删除数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> 表名;</span><br></pre></td></tr></table></figure>
+
+<h3 id="SQL-函数"><a href="#SQL-函数" class="headerlink" title="SQL 函数"></a>SQL 函数</h3><p>SQL 提供了很多函数，可以完成很复杂的功能，但是一般实际开发中不会用 SQL 来完成复杂的业务操作， SQL 只是一个简单的存储机制，会消耗大量的资源。</p>
+<p>Java 程序来完成相对复杂的操作，SQL 只是负责对数据进行保存和管理。</p>
+<ul>
+<li><p>数学函数：</p>
+<ul>
+<li>abs(num) 求绝对值</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">abs</span>(score) <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>floor(num) 返回小于 num 的最大整数</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">floor</span>(score) <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ceil(num) 返回大于 num 的最小整数</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">ceil</span>(score) <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符串函数</p>
+<ul>
+<li><p>insert(s1,index,len,s2)</p>
+<p>s1 中 index 位置开始，长度为 len 的字符替换为 s2</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">insert</span>(<span class="keyword">name</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="string">"小红"</span>) <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>upper(),ucase() 将字母值变为大写</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">ucase</span>(<span class="keyword">name</span>) <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>lower(),lcase() 将字母值变为小写</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">lcase</span>(<span class="keyword">name</span>) <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>left(s,len) 返回 s 字符串的前 len 个字符</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">left</span>(<span class="keyword">name</span>,<span class="number">1</span>) <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>right(s,len) 返回 s 字符串的后 len 个字符</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">right</span>(<span class="keyword">name</span>,<span class="number">1</span>) <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>substring(s, index,len) 截取 s 字符串，从 index 位置开始，长度为 len</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">substring</span>(<span class="keyword">name</span>,<span class="number">2</span>,<span class="number">2</span>) <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>reverse() 反序输出</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">reverse</span>(<span class="keyword">name</span>) <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>日期函数：</p>
+<ul>
+<li><p>curdate()、current_date() 获取当前日期</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">current_date</span>();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>curtime()、current_time() 获取当前时间</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">curtime</span>();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>now() 获取当前日期+时间</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">now</span>();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>datediff(d1,d2) 获取 d1 和 d2 之间相隔的天数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">datediff</span>(<span class="string">"2019-02-11"</span>,<span class="string">"2017-03-16"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>adddate(d,n) 返回 d 日期之后 n 天的日期</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> adddate(<span class="string">"2019-02-11"</span>,<span class="number">600</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>subdate(d,n) 返回 d 日期之前 n 天的日期</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">subdate</span>(<span class="string">"2019-02-11"</span>,<span class="number">600</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>聚合函数</p>
+<ul>
+<li><p>count() 根据某个字段统计总记录数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">select <span class="title">count</span><span class="params">(*)</span> from user</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sum() 计算某个字段值的总和</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">select <span class="title">sum</span><span class="params">(score)</span> from user</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>avg() 求某个字段总和的平均值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">avg</span>(score) <span class="keyword">from</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>max() 求某个字段的最大值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">max</span>(score) <span class="keyword">from</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>min() 求某个字段的最小值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">min</span>(score) <span class="keyword">from</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="MySQL-运算符"><a href="#MySQL-运算符" class="headerlink" title="MySQL 运算符"></a>MySQL 运算符</h3><p>  1、算术运算符</p>
+<p>  ​        执行运算符：加减乘除</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> score/<span class="number">10</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<p>  ​        比较运算符：大于、等于、小于、不等于</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> score != <span class="number">100</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<p>  ​        逻辑运算符：与 或 非</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> score &lt; <span class="number">100</span> &amp;&amp; score &gt; <span class="number">60</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<p>  2、特殊运算符</p>
+<p>   is null 判断数据是否为空</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">is</span> <span class="literal">null</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+<p>  between and 判断值是否在某个区间之内</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>,score <span class="keyword">between</span> <span class="number">90</span> <span class="keyword">and</span> <span class="number">100</span> <span class="keyword">from</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>,score &gt;= <span class="number">90</span> &amp;&amp; score &lt;= <span class="number">100</span> <span class="keyword">from</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
+
+<p>  in 判断值是否在某个确定值的集合内</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>,score <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>,score <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span> <span class="keyword">or</span> <span class="keyword">id</span> = <span class="number">2</span> || <span class="keyword">id</span> = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<p>  like 模糊查询</p>
+<p>  以”水”开头</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> easybuy_product <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'水%'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>  以”水”结尾</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> easybuy_product <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'%水'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>  包含”水”</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> easybuy_product <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'%水%'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>  长度为2，一个”_”表示一个长度</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> easybuy_product <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'__'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>  包含”水”，同时长度为 3</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> easybuy_product <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'_水_'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>  以”水”开头，同时长度为3</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> easybuy_product <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'水__'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>  以”水”结尾，同时长度为3</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> easybuy_product <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'__水'</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><h3 id="多表关联查询"><a href="#多表关联查询" class="headerlink" title="多表关联查询"></a>多表关联查询</h3><h4 id="一对多关系"><a href="#一对多关系" class="headerlink" title="一对多关系"></a>一对多关系</h4><ul>
+<li>嵌套查询</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> address <span class="keyword">where</span> uid = (<span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">'李四'</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>连接查询</p>
+<ul>
+<li>内连接</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> u.name uname,u.score,a.name aname <span class="keyword">from</span> <span class="keyword">user</span> u <span class="keyword">inner</span> <span class="keyword">join</span> address a <span class="keyword">where</span> u.name = <span class="string">"张三"</span> <span class="keyword">and</span> u.id = a.uid;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> u.name uname,u.score,a.name aname <span class="keyword">from</span> <span class="keyword">user</span> u,address a <span class="keyword">where</span> u.name = <span class="string">"张三"</span> <span class="keyword">and</span> u.id = a.uid;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>外连接</p>
+<ul>
+<li>左连接：左表所有数据和右表满足条件的数据</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">user</span> u <span class="keyword">left</span> <span class="keyword">join</span> address a <span class="keyword">on</span> u.id = a.uid <span class="keyword">and</span> u.name = <span class="string">"张三"</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>右连接：右表所有数据和左表满足条件的数据</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">user</span> u <span class="keyword">right</span> <span class="keyword">join</span> address a <span class="keyword">on</span> u.id = a.uid <span class="keyword">and</span> u.name = <span class="string">"张三"</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="多对多关系"><a href="#多对多关系" class="headerlink" title="多对多关系"></a>多对多关系</h4>  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student(</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">int</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">  <span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">11</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> course(</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">int</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">  <span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">11</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>  多对多关系的建立不能直接给两张参与的数据表设置主外键关联关系，需要创建第三张表，来间接促成两张表的多对多关系，中间表中存在两个外键，分别被两张目标表的主键约束，两张目标表都是主表，中间表是两张目标表的从表。</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student_course(</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">int</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">  <span class="keyword">sid</span> <span class="built_in">int</span>,</span><br><span class="line">  cid <span class="built_in">int</span>,</span><br><span class="line">  <span class="keyword">foreign</span> <span class="keyword">key</span> (<span class="keyword">sid</span>) <span class="keyword">references</span> student(<span class="keyword">id</span>),</span><br><span class="line">  <span class="keyword">foreign</span> <span class="keyword">key</span> (cid) <span class="keyword">references</span> course(<span class="keyword">id</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>  嵌套查询</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student_course sc,course c,student s <span class="keyword">where</span> c.id = sc.cid <span class="keyword">and</span> s.id = sc.sid <span class="keyword">and</span> <span class="keyword">sid</span> = (<span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> student <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">"张三"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>  内连接查询</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> s.name sname,c.name cname <span class="keyword">from</span> student s,course c,student_course sc <span class="keyword">where</span> s.id = sc.sid <span class="keyword">and</span> c.id = sc.cid;</span><br></pre></td></tr></table></figure>
+
+<p>  去重 distinct</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> s.name sname,c.name cname <span class="keyword">from</span> student s,course c,student_course sc <span class="keyword">where</span> s.id = sc.sid <span class="keyword">and</span> c.id = sc.cid;</span><br></pre></td></tr></table></figure>
+
+<p>  分页 limit index,length</p>
+<p>  limit 本质上就是在截取查询到的结果集，index 是起始下标，length 是截取的长度。</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="数据库索引"><a href="#数据库索引" class="headerlink" title="数据库索引"></a>数据库索引</h3><p>  索引是一种特殊的数据库结构，可以用来快速查询数据库表中的特定记录，索引是提高数据库性能的重要方式，所有字段都可以添加索引。</p>
+<p>  索引包括：普通索引、唯一性索引、全文索引、单列索引、多列索引、空间索引。</p>
+<p>  使用索引可以提升检索数据的速度，但是创建和维护所以需要耗费大量的时间，索引需要占用大量的物理空间。</p>
+<p>  普通索引：不需要任何限制条件的索引，可在任意数据类型上创建。</p>
+<p>  唯一索引：索引的值必须唯一，比如主键索引。</p>
+<p>  全文索引：只能创建在 char varchar text 类型的字段上，查询数据量较大的字符串类型字段时，使用全文索引可以提高效率，InnoDB 存储引擎不支持全文索引。</p>
+<p>  单列索引：只对应一个字段的索引。</p>
+<p>  多列索引：在一张表的多个字段上创建一个索引，查询时使用第一个字段，即可触发索引。</p>
+<p>  空间索引：只能建立在空间数据类型上（GIS），InnoDB 存储引擎不支持空间索引。</p>
+<h3 id="索引-index"><a href="#索引-index" class="headerlink" title="索引 index"></a>索引 index</h3><p>普通索引、唯一性索引、全文索引、单列索引、多列索引、空间索引。</p>
+<p>1、添加索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">add</span> <span class="keyword">index</span> 索引名(字段)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">index</span> 索引名 <span class="keyword">on</span> 表名(字段)</span><br></pre></td></tr></table></figure>
+
+<p>2、删除索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">drop</span> <span class="keyword">index</span> 索引名</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">index</span> 索引名 <span class="keyword">on</span> 表名</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>,age <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p>where 后面的字段加索引，select 后面的字段不加索引。</p>
+<h3 id="事务-transaction"><a href="#事务-transaction" class="headerlink" title="事务 transaction"></a>事务 transaction</h3><p>将多条 SQL 作为一个整体，要么全执行，要么一条都不执行。</p>
+<p>张三和李四各有1000块钱，张三借给李四500块钱，用数据库来体现这一场景。</p>
+<ul>
+<li>原子性：多条 SQL 语句是一个整体，不可再分割。</li>
+<li>一致性：SQL 语句执行前后，数据库数据的值保持一致。</li>
+<li>隔离性：一个事务的执行不能被其他事务所干扰。</li>
+<li>持久性：一个事务一旦提交，数据库中数据的改变是永久的。</li>
+</ul>
+<p>MySQL 是默认自动提交事务的，可以通过语句来查询是否开启了事务的自动提交</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'autocommit'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>开启/关闭自动提交</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span>/<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>事务的操作：</p>
+<p>1、开启事务</p>
+<p>start transaction;</p>
+<p>2、回滚</p>
+<p>rollback;</p>
+<p>3、提交</p>
+<p>commit;</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span>;</span><br><span class="line"><span class="keyword">update</span> people <span class="keyword">set</span> money = <span class="number">500</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">update</span> people <span class="keyword">set</span> money = <span class="number">1500</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">rollback</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span>;</span><br><span class="line"><span class="keyword">update</span> people <span class="keyword">set</span> money = <span class="number">500</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">update</span> people <span class="keyword">set</span> money = <span class="number">1500</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">commit</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="视图-view"><a href="#视图-view" class="headerlink" title="视图 view"></a>视图 view</h3><p>数据库中一张虚拟的表，允许不同用户或应用程序以不同的方式查看同一张表中的数据。</p>
+<p>创建视图：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> view_common <span class="keyword">as</span> <span class="keyword">select</span> <span class="keyword">id</span>,<span class="keyword">name</span> <span class="keyword">from</span> people;</span><br></pre></td></tr></table></figure>
+
+<p>使用视图：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> view_common;</span><br></pre></td></tr></table></figure>
+
+<p>删除视图：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">view</span> view_common;</span><br></pre></td></tr></table></figure>
+
+<h3 id="触发器-trigger"><a href="#触发器-trigger" class="headerlink" title="触发器 trigger"></a>触发器 trigger</h3><p>触发器定义了一系列操作，可以在对指定的表进行插入、更新或者删除操作的同时自动执行这些预先定义好的操作。</p>
+<p>触发器的优点</p>
+<ul>
+<li>开发更快，因为触发器存储在数据库中，所以不必编写每个触发器在应用程序中执行的操作。</li>
+<li>更容易维护，定义好触发器之后，访问目标表，会自动调用触发器。</li>
+<li>业务全局实现，如果修改业务，只需要修改触发器即可，不需要修改业务代码。</li>
+</ul>
+<p>触发器的分类：</p>
+<ul>
+<li>前触发器：在更新、插入操作之前执行。</li>
+<li>后触发器：在更新、插入、删除之后执行。</li>
+<li>Before delete触发器：在删除之前执行。</li>
+<li>Insted of 触发器：对复杂视图执行插入、更新和删除时执行。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tab1(</span><br><span class="line">  tab1_id <span class="built_in">varchar</span>(<span class="number">11</span>)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tab2(</span><br><span class="line">  tab2_id <span class="built_in">varchar</span>(<span class="number">11</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>创建触发器</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">trigger</span> t_afterinsert_on_tab1</span><br><span class="line">  <span class="keyword">after</span> <span class="keyword">insert</span> <span class="keyword">on</span> tab1</span><br><span class="line">  <span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">insert</span> <span class="keyword">into</span> tab2(tab2_id) <span class="keyword">values</span> (new.tab1_id);</span><br><span class="line">  <span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+
+<p>删除触发器</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">trigger</span> t_afterinsert_on_tab1;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">trigger</span> t_afterdelete_on_tab1</span><br><span class="line">  <span class="keyword">after</span> <span class="keyword">delete</span> <span class="keyword">on</span> tab1</span><br><span class="line">  <span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">delete</span> <span class="keyword">from</span> tab2 <span class="keyword">where</span> tab2_id = old.tab1_id;</span><br><span class="line">  <span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">trigger</span> t_afterdelete_on_tab1;</span><br></pre></td></tr></table></figure>
+
+<h3 id="存储过程-procedure"><a href="#存储过程-procedure" class="headerlink" title="存储过程 procedure"></a>存储过程 procedure</h3><p>存储过程是一组为了完成特定功能的 SQL 语句的集合，经编译后存储在数据库中，用户通过指定存储过程的名称并给出参数来执行。</p>
+<p>一次编写，多次调用，避免开发人员重复编写相同的 SQL，存储过程是在数据库存储和执行的。可以减少客户端和服务器之间的数据传输，提高效率。</p>
+<p>优点：</p>
+<ul>
+<li>模块化的程序设计，只需要创建一次存储过程，以后就可以在程序中调用该存储过程任意次。</li>
+<li>执行速度更快，如果某操作需要执行大量的 SQL 语句或重复执行 SQL 语句，存储过程比普通的 SQL 语句执行更快。</li>
+<li>更好的安全机制，对于没有权限执行存储过程的用户，也可以授权他们执行存储过程。</li>
+</ul>
+<p>创建存储过程</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> produce 存储过程名称(参数列表) routine_body</span><br></pre></td></tr></table></figure>
+
+<p>参数列表：参数数据类型，参数名称，输入输出类型（in 入参，out 出参）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> add_name(<span class="keyword">in</span> target <span class="built_in">int</span>)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">declare</span> <span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">20</span>);</span><br><span class="line">  if target = 1 then</span><br><span class="line">    <span class="keyword">set</span> <span class="keyword">name</span> = <span class="string">"MySQL"</span>;</span><br><span class="line">    else</span><br><span class="line">    <span class="keyword">set</span> <span class="keyword">name</span> = <span class="string">"Java"</span>;</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line">  <span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">user</span>(<span class="keyword">name</span>) <span class="keyword">values</span> (<span class="keyword">name</span>);</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> add_name(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">procedure</span> add_name;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> count_of_user(<span class="keyword">out</span> count_num <span class="built_in">int</span>)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">into</span> count_num <span class="keyword">from</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> count_of_user(@count_num);</span><br><span class="line"><span class="keyword">select</span> @count_num;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">procedure</span> count_of_user;</span><br></pre></td></tr></table></figure>
+
+<h3 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h3><p>存储过程是一组为了完成特定功能的 SQL 语句集合，经过编译后存储在数据库中，用户通过指定存储过程的名称以及参数来执行相应的存储过程。</p>
+<p>一次编写，多次调用，避免开发人员重复编写相同的 SQL 语句，存储过程是在数据库中存储和执行的，可以减少客户端和服务端之间的数据传输，从而提高效率。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>模块化的程序设计，只需要创建一次存储过程，以后就可以在程序中调用该存储过程任意次。</li>
+<li>执行速度更快，如果某个操作需要执行大量的 SQL 语句或者需要重复执行 SQL 语句，存储过程比 SQL 语句执行的更快。</li>
+<li>更好的安全机制，对于没有权限执行存储过程的用户，也可以授权他们执行存储过程。</li>
+</ul>
+<h3 id="具体使用"><a href="#具体使用" class="headerlink" title="具体使用"></a>具体使用</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> 存储过程名称 (参数列表) routine_body</span><br></pre></td></tr></table></figure>
+
+<p>参数列表由 3 部分组成：输入输出类型，参数名称，参数数据类型。</p>
+<p>in 表示入参，从外部调用方传给存储过程内部，相当于 Java 方法中的参数。</p>
+<p>out 表示出参，存储过程内部返回给外部调用者的值，相当于 Java 方法中的返回值。</p>
+<p>routine_body SQL 代码的内容，begin/end 来标识代码的开始和结束。</p>
+<p>创建存储过程</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> add_name(<span class="keyword">in</span> target <span class="built_in">int</span>)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">declare</span> <span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">20</span>);</span><br><span class="line">  if target = 1 then</span><br><span class="line">  <span class="keyword">set</span> <span class="keyword">name</span> = <span class="string">"MySQL"</span>;</span><br><span class="line">  else</span><br><span class="line">  <span class="keyword">set</span> <span class="keyword">name</span> = <span class="string">"Java"</span>;</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line">  <span class="keyword">insert</span> <span class="keyword">into</span> test.student(<span class="keyword">name</span>) <span class="keyword">values</span>(<span class="keyword">name</span>);</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+
+<p>使用存储过程：call 存储过程名称(参数列表)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> add_name(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<p>删除存储过程：drop procedure 存储过程名称</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">procedure</span> add_name;</span><br></pre></td></tr></table></figure>
+
+<h3 id="出参存储过程"><a href="#出参存储过程" class="headerlink" title="出参存储过程"></a>出参存储过程</h3><p>创建存储过程</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> count_of_student(<span class="keyword">out</span> count_num <span class="built_in">int</span>)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">into</span> count_num <span class="keyword">from</span> test.student;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+
+<p>使用存储过程</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> count_of_student(@count_num);</span><br><span class="line"><span class="keyword">select</span> @count_num;</span><br></pre></td></tr></table></figure>
+
+<h3 id="流程控制语句："><a href="#流程控制语句：" class="headerlink" title="流程控制语句："></a>流程控制语句：</h3><ul>
+<li>if</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> example_if(<span class="keyword">in</span> x <span class="built_in">int</span>)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">if</span> x = <span class="number">1</span> <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> student;</span><br><span class="line">    elseif x = 2 then</span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> student;</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>case</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> example_case(<span class="keyword">in</span> x <span class="built_in">int</span>)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">case</span> x</span><br><span class="line">    <span class="keyword">when</span> <span class="number">1</span> <span class="keyword">then</span> <span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> student;</span><br><span class="line">    when 2 then <span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> student;</span><br><span class="line">    when 3 then <span class="keyword">select</span> score <span class="keyword">from</span> student;</span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">case</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>while</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> example_while(<span class="keyword">out</span> <span class="keyword">sum</span> <span class="built_in">int</span>)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">declare</span> i <span class="built_in">int</span> <span class="keyword">default</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">declare</span> s <span class="built_in">int</span> <span class="keyword">default</span> <span class="number">0</span>;</span><br><span class="line">  while i&lt;=100 do</span><br><span class="line">    <span class="keyword">set</span> s = s+i;</span><br><span class="line">    <span class="keyword">set</span> i = i+<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">while</span>;</span><br><span class="line">  <span class="keyword">set</span> <span class="keyword">sum</span> = s;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2020/04/09/Thymeleaf 常用标签/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zwf0920">
+      <meta itemprop="description" content="zwf0920个人站，主要涉及java后端和框架技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwf0920">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/09/Thymeleaf 常用标签/" class="post-title-link" itemprop="url">Thymeleaf 常用标签</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-04-09 00:00:00" itemprop="dateCreated datePublished" datetime="2020-04-09T00:00:00+08:00">2020-04-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-10 20:22:12" itemprop="dateModified" datetime="2020-05-10T20:22:12+08:00">2020-05-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/使用参考/" itemprop="url" rel="index"><span itemprop="name">使用参考</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Thymeleaf-常用标签"><a href="#Thymeleaf-常用标签" class="headerlink" title="Thymeleaf 常用标签"></a>Thymeleaf 常用标签</h3><p>Thymeleaf 全部是嵌入到 HTML 标签内部去使用。</p>
+<ul>
+<li>th:text</li>
+</ul>
+<p>用于文本显示，将业务数据的值填充到 HTML 标签中</p>
+<ul>
+<li>th:if</li>
+</ul>
+<p>用来做条件判断，对业务数据的值进行判断，如果成立则显示内容，否则不显示。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/index"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">index</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">    modelAndView.setViewName(<span class="string">"index"</span>);</span><br><span class="line">    modelAndView.addObject(<span class="string">"score"</span>,<span class="number">90</span>);</span><br><span class="line">    <span class="keyword">return</span> modelAndView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:if</span>=<span class="string">"$&#123;score&gt;=90&#125;"</span>&gt;</span>优秀<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:if</span>=<span class="string">"$&#123;score&lt;90&#125;"</span>&gt;</span>良好<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>th:unless</li>
+</ul>
+<p>用来做条件判断，逻辑与 th:if 刚好相反，如果条件不成立显示，条件成立不显示。</p>
+<ul>
+<li>th:switch th:case</li>
+</ul>
+<p>th:switch、th:case 两个标签需要结合起来使用，用作多条件等值判断，逻辑与 Java 中的 switch-case 一致，当 switch 中的业务数据值等于某个 case 值时，就显示该 case 对应的内容。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/index"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">index</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">    modelAndView.setViewName(<span class="string">"index"</span>);</span><br><span class="line">    modelAndView.addObject(<span class="string">"id"</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> modelAndView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:switch</span>=<span class="string">"$&#123;id&#125;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">th:case</span>=<span class="string">"1"</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">th:case</span>=<span class="string">"2"</span>&gt;</span>李四<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">th:case</span>=<span class="string">"3"</span>&gt;</span>王五<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>th:action</li>
+</ul>
+<p>用来指定请求的 URL，相当于 form 表单中的 action 属性。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">th:action</span>=<span class="string">"@&#123;/login&#125;"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">    用户名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"登录"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>th:each</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/each"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">each</span><span class="params">()</span></span>&#123;</span><br><span class="line">    List&lt;User&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    list.add(<span class="keyword">new</span> User(<span class="number">1L</span>,<span class="string">"张三"</span>,<span class="number">0</span>));</span><br><span class="line">    list.add(<span class="keyword">new</span> User(<span class="number">2L</span>,<span class="string">"李四"</span>,<span class="number">1</span>));</span><br><span class="line">    list.add(<span class="keyword">new</span> User(<span class="number">3L</span>,<span class="string">"王五"</span>,<span class="number">0</span>));</span><br><span class="line">    ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">    modelAndView.setViewName(<span class="string">"test"</span>);</span><br><span class="line">    modelAndView.addObject(<span class="string">"list"</span>,list);</span><br><span class="line">    <span class="keyword">return</span> modelAndView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>编号<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>年龄<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span> <span class="attr">th:each</span>=<span class="string">"user:$&#123;list&#125;"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;user.id&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;user.name&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:if</span>=<span class="string">"$&#123;user.gender == 1&#125;"</span>&gt;</span>男<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:if</span>=<span class="string">"$&#123;user.gender == 0&#125;"</span>&gt;</span>女<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>th:value</li>
+</ul>
+<p>用来给标签赋值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/value"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">value</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">    modelAndView.setViewName(<span class="string">"test"</span>);</span><br><span class="line">    modelAndView.addObject(<span class="string">"value"</span>,<span class="string">"Spring Boot"</span>);</span><br><span class="line">    <span class="keyword">return</span> modelAndView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">th:value</span>=<span class="string">"$&#123;value&#125;"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>th:src</li>
+</ul>
+<p>用来引入静态资源，相当于 HTML 原生标签 img、script 的 src 属性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/src"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">src</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">    modelAndView.setViewName(<span class="string">"test"</span>);</span><br><span class="line">    modelAndView.addObject(<span class="string">"src"</span>,<span class="string">"/1.png"</span>);</span><br><span class="line">    <span class="keyword">return</span> modelAndView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">th:src</span>=<span class="string">"$&#123;src&#125;"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$&#123;src&#125;      //需要Handler将具体的路径传入到前端	</span><br><span class="line">@&#123;/1.png&#125;   //Handler不需要传入具体的路径，只需要做映射，解析th标签</span><br></pre></td></tr></table></figure>
+
+<p>只要前端页面使用了 th，则必须通过 Handler 映射才能正确解析。</p>
+<ul>
+<li>th:href</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/href"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">href</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">    modelAndView.setViewName(<span class="string">"test"</span>);</span><br><span class="line">    modelAndView.addObject(<span class="string">"href"</span>,<span class="string">"https://spring.io/projects/spring-boot"</span>);</span><br><span class="line">    <span class="keyword">return</span> modelAndView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$&#123;href&#125;						//需要Handler传值</span><br><span class="line">@&#123;http://www&#125;			//不需要Handler传值</span><br></pre></td></tr></table></figure>
+
+<p>以上两种方式必须通过 Handler 映射才能解析，通 th:src</p>
+<ul>
+<li>th:selected</li>
+</ul>
+<p>用来给 HTML 元素设置选中，条件成立则选中，否则不选中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/selected"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">selected</span><span class="params">()</span></span>&#123;</span><br><span class="line">  List&lt;User&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">  list.add(<span class="keyword">new</span> User(<span class="number">1L</span>,<span class="string">"张三"</span>,<span class="number">1</span>));</span><br><span class="line">  list.add(<span class="keyword">new</span> User(<span class="number">2L</span>,<span class="string">"李四"</span>,<span class="number">0</span>));</span><br><span class="line">  list.add(<span class="keyword">new</span> User(<span class="number">3L</span>,<span class="string">"王五"</span>,<span class="number">1</span>));</span><br><span class="line">  ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">  modelAndView.setViewName(<span class="string">"test"</span>);</span><br><span class="line">  <span class="comment">//        modelAndView.addObject("list",list);</span></span><br><span class="line">  modelAndView.addObject(<span class="string">"name"</span>,<span class="string">"李四"</span>);</span><br><span class="line">  <span class="keyword">return</span> modelAndView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--        &lt;option th:each="user:$&#123;list&#125;" th:text="$&#123;user.name&#125;" th:selected="$&#123;user.name == name&#125;"&gt;&lt;/option&gt;--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">th:selected</span>=<span class="string">"$&#123;name=='张三'&#125;"</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">th:selected</span>=<span class="string">"$&#123;name=='李四'&#125;"</span>&gt;</span>李四<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">th:selected</span>=<span class="string">"$&#123;name=='王五'&#125;"</span>&gt;</span>王五<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>th:attr</li>
+</ul>
+<p>用来给 HTML 标签的任意属性赋值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/attr"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">attr</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">    modelAndView.setViewName(<span class="string">"test"</span>);</span><br><span class="line">    modelAndView.addObject(<span class="string">"attr"</span>,<span class="string">"Spring Boot"</span>);</span><br><span class="line">    <span class="keyword">return</span> modelAndView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">th:attr</span>=<span class="string">"value=$&#123;attr&#125;"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Thymeleaf-对象"><a href="#Thymeleaf-对象" class="headerlink" title="Thymeleaf 对象"></a>Thymeleaf 对象</h3><p>Thymeleaf 支持直接访问 Servlet Web 原生资源，即 HttpServletRequest、HttpServletResponse、HttpSession、ServletContext 对象。</p>
+<ul>
+<li><p><code>#request</code>：获取 HttpServletRequest 对象</p>
+</li>
+<li><p><code>#response</code>：获取 HttpServletResponse 对象</p>
+</li>
+<li><p><code>#session</code>：获取 HttpSession 对象</p>
+</li>
+<li><p><code>#servletContext</code>：获取 ServletContext 对象</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/servlet"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">servlet</span><span class="params">(HttpServletRequest request)</span></span>&#123;</span><br><span class="line">    request.setAttribute(<span class="string">"value"</span>,<span class="string">"request"</span>);</span><br><span class="line">    request.getSession().setAttribute(<span class="string">"value"</span>,<span class="string">"session"</span>);</span><br><span class="line">    request.getServletContext().setAttribute(<span class="string">"value"</span>,<span class="string">"servletContext"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"test"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#request.getAttribute('value')&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#session.getAttribute('value')&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#servletContext.getAttribute('value')&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#response&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Thymeleaf 可以直接访问 session，通过 ${session.name} 可以直接取值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/session"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">session</span><span class="params">(HttpSession session)</span></span>&#123;</span><br><span class="line">    session.setAttribute(<span class="string">"name"</span>,<span class="string">"张三"</span>);</span><br><span class="line">    ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">    modelAndView.setViewName(<span class="string">"test"</span>);</span><br><span class="line">    modelAndView.addObject(<span class="string">"name"</span>,<span class="string">"李四"</span>);</span><br><span class="line">    <span class="keyword">return</span> modelAndView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"$&#123;name&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#request.getAttribute('name')&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"$&#123;session.name&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#session.getAttribute('name')&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Thymeleaf-内置对象"><a href="#Thymeleaf-内置对象" class="headerlink" title="Thymeleaf 内置对象"></a>Thymeleaf 内置对象</h3><ul>
+<li>dates：日期格式化内置对象，参照 java.util.Date 的使用。</li>
+<li>calendars：日期操作内置对象，参照 java.util.Calendar 的使用。</li>
+<li>numbers：数字格式化内置对象。</li>
+<li>strings：字符串格式化内置对象，参照 java.lang.String 的使用。</li>
+<li>bools：boolean 类型内置对象。</li>
+<li>arrays：数组操作内置对象，参照 java.utils.Arrays 的使用。</li>
+<li>lists：List 集合内置对象，参照 java.util.List 的使用。</li>
+<li>sets：Set 集合内置对象，参照 java.util.Set 的使用。</li>
+<li>maps：Map 集合内置对象，参照 java.util.Map 的使用。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/utility"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">utility</span><span class="params">()</span></span>&#123;</span><br><span class="line">  ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">  modelAndView.setViewName(<span class="string">"test"</span>);</span><br><span class="line">  modelAndView.addObject(<span class="string">"date"</span>,<span class="keyword">new</span> Date());</span><br><span class="line">  Calendar calendar = Calendar.getInstance();</span><br><span class="line">  calendar.set(<span class="number">2019</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">  modelAndView.addObject(<span class="string">"calendar"</span>,calendar);</span><br><span class="line">  modelAndView.addObject(<span class="string">"number"</span>,<span class="number">0.06</span>);</span><br><span class="line">  modelAndView.addObject(<span class="string">"string"</span>,<span class="string">"Spring Boot"</span>);</span><br><span class="line">  modelAndView.addObject(<span class="string">"boolean"</span>,<span class="keyword">true</span>);</span><br><span class="line">  modelAndView.addObject(<span class="string">"array"</span>, Arrays.asList(<span class="string">"张三"</span>,<span class="string">"李四"</span>,<span class="string">"王五"</span>));</span><br><span class="line">  List&lt;User&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">  list.add(<span class="keyword">new</span> User(<span class="number">1L</span>,<span class="string">"张三"</span>,<span class="number">1</span>));</span><br><span class="line">  list.add(<span class="keyword">new</span> User(<span class="number">2L</span>,<span class="string">"李四"</span>,<span class="number">0</span>));</span><br><span class="line">  list.add(<span class="keyword">new</span> User(<span class="number">3L</span>,<span class="string">"王五"</span>,<span class="number">1</span>));</span><br><span class="line">  modelAndView.addObject(<span class="string">"list"</span>,list);</span><br><span class="line">  Set&lt;User&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">  set.add(<span class="keyword">new</span> User(<span class="number">1L</span>,<span class="string">"张三"</span>,<span class="number">1</span>));</span><br><span class="line">  set.add(<span class="keyword">new</span> User(<span class="number">2L</span>,<span class="string">"李四"</span>,<span class="number">0</span>));</span><br><span class="line">  set.add(<span class="keyword">new</span> User(<span class="number">3L</span>,<span class="string">"王五"</span>,<span class="number">1</span>));</span><br><span class="line">  modelAndView.addObject(<span class="string">"set"</span>,set);</span><br><span class="line">  Map&lt;Long,User&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">  map.put(<span class="number">1L</span>,<span class="keyword">new</span> User(<span class="number">1L</span>,<span class="string">"张三"</span>,<span class="number">1</span>));</span><br><span class="line">  map.put(<span class="number">2L</span>,<span class="keyword">new</span> User(<span class="number">2L</span>,<span class="string">"李四"</span>,<span class="number">0</span>));</span><br><span class="line">  map.put(<span class="number">3L</span>,<span class="keyword">new</span> User(<span class="number">3L</span>,<span class="string">"王五"</span>,<span class="number">1</span>));</span><br><span class="line">  modelAndView.addObject(<span class="string">"map"</span>,map);</span><br><span class="line">  <span class="keyword">return</span> modelAndView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">date格式化：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#dates.format(date,'yyyy-MM-dd')&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">当前日期：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#dates.createToday()&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">当前时间：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#dates.createNow()&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">calendar格式化：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#calendars.format(calendar,'yyyy-MM-dd')&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">number百分比格式化：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#numbers.formatPercent(number,2,2)&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">string是否为空：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#strings.isEmpty(string)&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">string长度：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#strings.length(string)&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">string拼接：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#strings.concat('Hello World',string)&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">boolean是否为true：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#bools.isTrue(boolean)&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">arrays的长度：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#arrays.length(array)&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">arrays是否包含张三：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#arrays.contains(array,'张三')&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">list是否为空：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#lists.isEmpty(list)&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">list长度：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#lists.size(list)&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">set是否为空：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#sets.isEmpty(set)&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">set长度：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#sets.size(set)&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">map是否为空：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#maps.isEmpty(map)&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">map长度：<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#maps.size(map)&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2020/03/13/MyBatis 逆向工程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zwf0920">
+      <meta itemprop="description" content="zwf0920个人站，主要涉及java后端和框架技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwf0920">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/13/MyBatis 逆向工程/" class="post-title-link" itemprop="url">MyBatis 逆向工程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-13 15:36:37" itemprop="dateCreated datePublished" datetime="2020-03-13T15:36:37+08:00">2020-03-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-10 20:40:50" itemprop="dateModified" datetime="2020-05-10T20:40:50+08:00">2020-05-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/使用参考/" itemprop="url" rel="index"><span itemprop="name">使用参考</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="MyBatis-逆向工程"><a href="#MyBatis-逆向工程" class="headerlink" title="MyBatis 逆向工程"></a>MyBatis 逆向工程</h3><p>简化代码的开发</p>
+<p>MyBatis 是一个”半自动化”的ORM框架，SQL 语句需要开发者自定义，这样做的好处是代码更加灵活，SQL 语句需要单独在 Mapper.xml 中定义，与 Mapper 接口相对应，使用 MyBatis 进行开发的基本配置：</p>
+<p>1、实体类</p>
+<p>2、Mapper 接口</p>
+<p>3、Mapper.xml</p>
+<p>如果参与业务的表太多，每张表的业务都需要自定义 SQL、创建实体类、Mapper 接口，开发步骤过于繁琐，很麻烦。</p>
+<p>除了定义 SQL 语句，创建实体类和 Mapper 接口工作量并不大，没有涉及太多的业务逻辑，属于简单的重复性工作。</p>
+<p>MyBatis 能否自动根据数据表结构，帮助开发者生成实体类、Mapper 接口、Mapper.xml ?</p>
+<p>使用 MyBatis 逆向工程即可自动完成上述的需求。</p>
+<h3 id="什么是逆向工程？"><a href="#什么是逆向工程？" class="headerlink" title="什么是逆向工程？"></a>什么是逆向工程？</h3><p>逆向工程是 MyBatis 提供的一种自动化配置方案，针对数据表自动生成 MyBatis 所需要的各种资源，包括实体类、Mapper接口、Mapper.xml，但是逆向工程的缺陷在于只能针对单表进行操作，如果数据表之间有级联关系，逆向工程无法自动生成级联关系。</p>
+<p>同时 MyBatis 逆向工程的灵活性较差，它可以根据当前的数据表结构自动生成相关资源，但是如果需求发生变化，需要对数据表结构进行修改，则之前自动创建的各种资源就不可再用，需要开发者手动删除，然后重新执行异常逆向工程的代码。</p>
+<p>使用逆向工程，让 MyBatis 自动生成数据表对应的各种资源（实体类、Mapper 接口、Mapper.xml），可以大大减少开发者的工作量。</p>
+<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><p>MyBatis 实现逆向工程的组件是 MyBatis Generator，简称 MBG，是专门为 MyBatis 框架定制的代码自动生成解决方案，MBG 可以根据数据表结构快速生成对应的 Mapper.xml、Mapper 接口、实体类，并且支持基本的 CURD 操作，但是业务逻辑相对复杂的操作需要开发者手动完成。</p>
+<p>1、pom.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>8.0.16<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.generator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-generator-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2、创建目标表 t_account，MBG 自动根据该表结构生成相关资源（实体类、Mapper 接口，Mapper.xml）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> t_account(</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">int</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">  username <span class="built_in">varchar</span>(<span class="number">11</span>),</span><br><span class="line">  <span class="keyword">password</span> <span class="built_in">varchar</span>(<span class="number">11</span>),</span><br><span class="line">  age <span class="built_in">int</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>3、创建 MBG 配置文件 generatorConfig.xml，核心配置有 jdbcConnection、javaModelGenerator、sqlMapGenerator、javaClientGenerator、table。</p>
+<ul>
+<li>jdbcConnection 配置数据库连接信息。</li>
+<li>javaModelGenerator 配置 JavaBean 的生成策略。</li>
+<li>sqlMapGenerator 配置 SQL 映射文件生成策略。</li>
+<li>javaClientGenerator 配置 Mapper 接口的生成策略。</li>
+<li>table 配置要逆向解析的数据（tableName：表名，domainObjectName：对应的 JavaBean 名称）</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE generatorConfiguration</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">generatorConfiguration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context</span> <span class="attr">id</span>=<span class="string">"testTables"</span> <span class="attr">targetRuntime</span>=<span class="string">"MyBatis3"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">jdbcConnection</span></span></span><br><span class="line"><span class="tag">                <span class="attr">driverClass</span>=<span class="string">"com.mysql.cj.jdbc.Driver"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">connectionURL</span>=<span class="string">"jdbc:mysql://localhost:3306/mybatis?useUnicode=true&amp;amp;characterEncoding=UTF-8"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">userId</span>=<span class="string">"root"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">password</span>=<span class="string">"root"</span></span></span><br><span class="line"><span class="tag">        &gt;</span><span class="tag">&lt;/<span class="name">jdbcConnection</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">javaModelGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"com.luffy.entity"</span> <span class="attr">targetProject</span>=<span class="string">"./src/main/java"</span>&gt;</span><span class="tag">&lt;/<span class="name">javaModelGenerator</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">sqlMapGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"com.luffy.repository"</span> <span class="attr">targetProject</span>=<span class="string">"./src/main/java"</span>&gt;</span><span class="tag">&lt;/<span class="name">sqlMapGenerator</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">javaClientGenerator</span> <span class="attr">type</span>=<span class="string">"XMLMAPPER"</span> <span class="attr">targetPackage</span>=<span class="string">"com.luffy.repository"</span> <span class="attr">targetProject</span>=<span class="string">"./src/main/java"</span>&gt;</span><span class="tag">&lt;/<span class="name">javaClientGenerator</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">"t_account"</span> <span class="attr">domainObjectName</span>=<span class="string">"Account"</span>&gt;</span><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">context</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">generatorConfiguration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>4、创建 GeneratorMain 类，执行自动生成资源的代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.southwind.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.mybatis.generator.api.MyBatisGenerator;</span><br><span class="line"><span class="keyword">import</span> org.mybatis.generator.config.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.mybatis.generator.config.xml.ConfigurationParser;</span><br><span class="line"><span class="keyword">import</span> org.mybatis.generator.exception.InvalidConfigurationException;</span><br><span class="line"><span class="keyword">import</span> org.mybatis.generator.exception.XMLParserException;</span><br><span class="line"><span class="keyword">import</span> org.mybatis.generator.internal.DefaultShellCallback;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GeneratorMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; warings = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        <span class="keyword">boolean</span> overwrite = <span class="keyword">true</span>;</span><br><span class="line">        String genCig = <span class="string">"/generatorConfig.xml"</span>;</span><br><span class="line">        File configFile = <span class="keyword">new</span> File(GeneratorMain.class.getResource(genCig).getFile());</span><br><span class="line">        ConfigurationParser configurationParser = <span class="keyword">new</span> ConfigurationParser(warings);</span><br><span class="line">        Configuration configuration = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            configuration = configurationParser.parseConfiguration(configFile);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (XMLParserException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        DefaultShellCallback callback = <span class="keyword">new</span> DefaultShellCallback(overwrite);</span><br><span class="line">        MyBatisGenerator myBatisGenerator = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            myBatisGenerator = <span class="keyword">new</span> MyBatisGenerator(configuration,callback,warings);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InvalidConfigurationException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            myBatisGenerator.generate(<span class="keyword">null</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Example</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AccountExample accountExample = <span class="keyword">new</span> AccountExample();</span><br><span class="line">accountExample.setOrderByClause(<span class="string">"username desc"</span>);</span><br><span class="line">accountExample.setDistinct(<span class="keyword">false</span>);</span><br><span class="line">AccountExample.Criteria criteria = accountExample.createCriteria();</span><br><span class="line">criteria.andUsernameEqualTo(<span class="string">"张三"</span>);</span><br><span class="line">List&lt;Account&gt; accounts = accountExample.selectByExample(accountExample);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2020/02/10/注解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zwf0920">
+      <meta itemprop="description" content="zwf0920个人站，主要涉及java后端和框架技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwf0920">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/10/注解/" class="post-title-link" itemprop="url">常用注解整理（非原创）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-02-10 15:36:37" itemprop="dateCreated datePublished" datetime="2020-02-10T15:36:37+08:00">2020-02-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-10 20:36:48" itemprop="dateModified" datetime="2020-05-10T20:36:48+08:00">2020-05-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/使用参考/" itemprop="url" rel="index"><span itemprop="name">使用参考</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="常用注解整理（非原创）"><a href="#常用注解整理（非原创）" class="headerlink" title="常用注解整理（非原创）"></a>常用注解整理（非原创）</h2><p>笔者在代码学习中对注解这一块很陌生，于是在网上找了一些资料摘录下来，方便以后学习过程中查阅，如果有时间会对每个注解都写下使用方法和demo</p>
+<h3 id="Java内置注解"><a href="#Java内置注解" class="headerlink" title="Java内置注解"></a>Java内置注解</h3><p>Java 定义了一套注解，共有 7 个，3 个在 java.lang 中，剩下 4 个在 java.lang.annotation 中。</p>
+<p><strong>作用在代码的注解是</strong></p>
+<ul>
+<li>@Override - 检查该方法是否是重写方法。如果发现其父类，或者是引用的接口中并没有该方法时，会报编译错误。</li>
+<li>@Deprecated - 标记过时方法。如果使用该方法，会报编译警告。</li>
+<li>@SuppressWarnings - 指示编译器去忽略注解中声明的警告。</li>
+</ul>
+<p>作用在其他注解的注解(或者说 元注解)是:</p>
+<ul>
+<li>@Retention - 标识这个注解怎么保存，是只在代码中，还是编入class文件中，或者是在运行时可以通过反射访问。</li>
+<li>@Documented - 标记这些注解是否包含在用户文档中。</li>
+<li>@Target - 标记这个注解应该是哪种 Java 成员。</li>
+<li>@Inherited - 标记这个注解是继承于哪个注解类(默认 注解并没有继承于任何子类)</li>
+</ul>
+<p>从 Java 7 开始，额外添加了 3 个注解:</p>
+<ul>
+<li>@SafeVarargs - Java 7 开始支持，忽略任何使用参数为泛型变量的方法或构造函数调用产生的警告。</li>
+<li>@FunctionalInterface - Java 8 开始支持，标识一个匿名函数或函数式接口。</li>
+<li>@Repeatable - Java 8 开始支持，标识某注解可以在同一个声明上使用多次。</li>
+</ul>
+<h3 id="Spring-mvc-常用注解"><a href="#Spring-mvc-常用注解" class="headerlink" title="Spring mvc 常用注解"></a>Spring mvc 常用注解</h3><h4 id="一、组件型注解："><a href="#一、组件型注解：" class="headerlink" title="一、组件型注解："></a>一、组件型注解：</h4><ol>
+<li>@Component 在类定义之前添加@Component注解，他会被spring容器识别，并转为bean。</li>
+<li>@Repository 对Dao实现类进行注解 (特殊的@Component)</li>
+<li>@Service 用于对业务逻辑层进行注解， (特殊的@Component)</li>
+<li>@Controller 用于控制层注解 ， (特殊的@Component)</li>
+</ol>
+<p>　以上四种注解都是注解在类上的，被注解的类将被spring初始话为一个bean，然后统一管理。</p>
+<h4 id="二、请求和参数型注解："><a href="#二、请求和参数型注解：" class="headerlink" title="二、请求和参数型注解："></a>二、请求和参数型注解：</h4><ol>
+<li>@RequestMapping：用于处理请求地址映射，可以作用于类和方法上。</li>
+</ol>
+<ul>
+<li><ul>
+<li>value：定义request请求的映射地址</li>
+<li>method：定义地request址请求的方式，包括【GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE, TRACE.】默认接受get请求，如果请求方式和定义的方式不一样则请求无法成功。</li>
+<li>params：定义request请求中必须包含的参数值。</li>
+<li>headers：定义request请求中必须包含某些指定的请求头，如：RequestMapping(value = “/something”, headers = “content-type=text/*”)说明请求中必须要包含”text/html”, “text/plain”这中类型的Content-type头，才是一个匹配的请求。</li>
+<li>consumes：定义请求提交内容的类型。</li>
+<li>produces：指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="meta">@RequestMapping</span>(value=<span class="string">"/requestTest.do"</span>,params = &#123;<span class="string">"name=sdf"</span>&#125;,headers = &#123;<span class="string">"Accept-Encoding=gzip, deflate, br"</span>&#125;,method = RequestMethod.GET)</span><br><span class="line"><span class="number">2</span>     <span class="function"><span class="keyword">public</span> String <span class="title">getIndex</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="number">3</span>         System.out.println(<span class="string">"请求成功"</span>);</span><br><span class="line"><span class="number">4</span>         <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line"><span class="number">5</span>     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>　　　　上面代码表示请求的方式为GET请求，请求参数必须包含name=sdf这一参数，然后请求头中必须有 Accept-Encoding=gzip, deflate, br这个类型头。</p>
+<p> 2.@RequestParam：用于获取传入参数的值</p>
+<ul>
+<li><ul>
+<li>value：参数的名称</li>
+<li>required：定义该传入参数是否必须，默认为true，（和@RequestMapping的params属性有点类似）</li>
+</ul>
+</li>
+</ul>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> 1 @RequestMapping(&quot;/requestParams1.do&quot;)</span><br><span class="line"> 2     public String requestParams1(@RequestParam(required = false) String name)&#123;</span><br><span class="line"> 3         System.out.println(&quot;name = &quot;+name);</span><br><span class="line"> 4         return &quot;index&quot;;</span><br><span class="line"> 5     &#125;</span><br><span class="line"> 6     @RequestMapping(&quot;/requestParams2.do&quot;)</span><br><span class="line"> 7     public String requestParams2(@RequestParam(value = &quot;name&quot;,required = false) String names)&#123;</span><br><span class="line"> 8         System.out.println(&quot;name = &quot;+names);</span><br><span class="line"> 9         return &quot;index&quot;;</span><br><span class="line">10     &#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　　　两种请入参方式是一样的，显示声明value的名称时，入参参数名和value一样，没有显示声明的话，像第一种方式声明的，入参参数名和函数参数变量名一样。</p>
+<p>　　3.@PathViriable：用于定义路径参数值</p>
+<ul>
+<li><ul>
+<li>value：参数的名称</li>
+<li>required：定义传入参数是否为必须值</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;/&#123;myname&#125;/pathVariable2.do&quot;)</span><br><span class="line">    public String pathVariable2(@PathVariable(value = &quot;myname&quot;) String name)&#123;</span><br><span class="line">        System.out.println(&quot;myname = &quot;+name);</span><br><span class="line">        return &quot;index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>　　　　这个路径声明了{myname}作为路径参数，那么这一段路径将为任意值，@PathVariable将可以根据value获取路径的值。</p>
+<p>　　4.@ResponseBody：作用于方法上，可以将整个返回结果以某种格式返回，如json或xml格式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="meta">@RequestMapping</span>(<span class="string">"/&#123;myname&#125;/pathVariable2.do"</span>)</span><br><span class="line"><span class="number">2</span>     <span class="meta">@ResponseBody</span></span><br><span class="line"><span class="number">3</span>     <span class="function"><span class="keyword">public</span> String <span class="title">pathVariable2</span><span class="params">(@PathVariable(value = <span class="string">"myname"</span>)</span> String name)</span>&#123;</span><br><span class="line"><span class="number">4</span>         System.out.println(<span class="string">"myname = "</span>+name);</span><br><span class="line"><span class="number">5</span>         <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line"><span class="number">6</span>     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.@ModelAttribute：用于把参数保存到model中，可以注解方法或参数，注解在方法上的时候，该方法将在处理器方法执行之前执行，然后把返回的对象存放在 session（前提时要有@SessionAttributes注解） 或模型属性中，@ModelAttribute(“attributeName”) 在标记方法的时候指定，若未指定，则使用返回类型的类名称（首字母小写）作为属性名称。　</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">1</span> <span class="meta">@ModelAttribute</span>(<span class="string">"user"</span>)</span><br><span class="line"> <span class="number">2</span>     <span class="function"><span class="keyword">public</span> UserEntity <span class="title">getUser</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="number">3</span>         UserEntity userEntityr = <span class="keyword">new</span> UserEntity();</span><br><span class="line"> <span class="number">4</span>         userEntityr.setUsername(<span class="string">"asdf"</span>);</span><br><span class="line"> <span class="number">5</span>         <span class="keyword">return</span> userEntityr;</span><br><span class="line"> <span class="number">6</span>     &#125;</span><br><span class="line"> <span class="number">7</span> </span><br><span class="line"> <span class="number">8</span>     <span class="meta">@RequestMapping</span>(<span class="string">"/modelTest.do"</span>)</span><br><span class="line"> <span class="number">9</span>     <span class="function"><span class="keyword">public</span> String <span class="title">getUsers</span><span class="params">(@ModelAttribute(<span class="string">"user"</span>)</span> UserEntity user)</span>&#123;</span><br><span class="line"><span class="number">10</span>         System.out.println(user.getUsername());</span><br><span class="line"><span class="number">11</span>         <span class="keyword">return</span> <span class="string">"/index"</span>;</span><br><span class="line"><span class="number">12</span>     &#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　如上代码中，使用了@ModelAttribute(“user”)注解，在执行控制器前执行，然后将生成一个名称为user的model数据，在控制器中我们通过注解在参数上的@ModelAttribute获取参数，然后将model应用到控制器中，在jsp页面中我们同样可以使用它，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 &lt;body&gt;</span><br><span class="line">2     $&#123;user.username&#125;</span><br><span class="line">3 &lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>　　6.@SessionAttributes</p>
+<p>　　默认情况下Spring MVC将模型中的数据存储到request域中。当一个请求结束后，数据就失效了。如果要跨页面使用。那么需要使用到session。而@SessionAttributes注解就可以使得模型中的数据存储一份到session域中。配合@ModelAttribute(“user”)使用的时候,会将对应的名称的model值存到session中，</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> 1 @Controller</span><br><span class="line"> 2 @RequestMapping(&quot;/test&quot;)</span><br><span class="line"> 3 @SessionAttributes(value = &#123;&quot;user&quot;,&quot;test1&quot;&#125;)</span><br><span class="line"> 4 public class LoginController&#123;</span><br><span class="line"> 5     @ModelAttribute(&quot;user&quot;)</span><br><span class="line"> 6     public UserEntity getUser()&#123;</span><br><span class="line"> 7         UserEntity userEntityr = new UserEntity();</span><br><span class="line"> 8         userEntityr.setUsername(&quot;asdf&quot;);</span><br><span class="line"> 9         return userEntityr;</span><br><span class="line">10     &#125;</span><br><span class="line">11 </span><br><span class="line">12     @RequestMapping(&quot;/modelTest.do&quot;)</span><br><span class="line">13     public String getUsers(@ModelAttribute(&quot;user&quot;) UserEntity user ,HttpSession session)&#123;</span><br><span class="line">14         System.out.println(user.getUsername());</span><br><span class="line">15         System.out.println(session.getAttribute(&quot;user&quot;));</span><br><span class="line">16         return &quot;/index&quot;;</span><br><span class="line">17     &#125;</span><br><span class="line">18 &#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　　结合上一个例子的代码，加了@SessionAttributes注解，然后请求了两次，第一次session中不存在属性名为user的值，第二次请求的时候发现session中又有了，这是因为，这是因为第一次请求时，model数据还未保存到session中请求结束返回的时候才保存，在第二次请求的时候已经可以获取上一次的model了，</p>
+<h3 id="Spring常用注解"><a href="#Spring常用注解" class="headerlink" title="Spring常用注解"></a>Spring常用注解</h3><p>使用注解之前要开启自动扫描功能，其中base-package为需要扫描的包(含子包)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;context:component-scan base-package=&quot;cn.test&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>@Configuration把一个类作为一个IoC容器，它的某个方法头上如果注册了@Bean，就会作为这个Spring容器中的Bean。<br>@Scope注解 作用域<br>@Lazy(true) 表示延迟初始化<br>@Service用于标注业务层组件、<br>@Controller用于标注控制层组件（如struts中的action）<br>@Repository用于标注数据访问组件，即DAO组件。<br>@Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。<br>@Scope用于指定scope作用域的（用在类上）<br>@PostConstruct用于指定初始化方法（用在方法上）<br>@PreDestory用于指定销毁方法（用在方法上）<br>@DependsOn：定义Bean初始化及销毁时的顺序<br>@Primary：自动装配时当出现多个Bean候选者时，被注解为@Primary的Bean将作为首选者，否则将抛出异常<br>@Autowired 默认按类型装配，如果我们想使用按名称装配，可以结合@Qualifier注解一起使用。如下：<br>@Autowired @Qualifier(“personDaoBean”) 存在多个实例配合使用<br>@Resource默认按名称装配，当找不到与名称匹配的bean才会按类型装配。<br>@PostConstruct 初始化注解<br>@PreDestroy 摧毁注解 默认 单例 启动就加载<br>@Async异步方法调用</p>
+<p>参考链接：1.<a href="https://www.cnblogs.com/xiaoxi/p/5935009.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaoxi/p/5935009.html</a></p>
+<p>​                   2.<a href="https://www.cnblogs.com/caijh/p/7744604.html" target="_blank" rel="noopener">https://www.cnblogs.com/caijh/p/7744604.html</a></p>
+<p>​                   3.<a href="https://www.runoob.com/w3cnote/java-annotation.html" target="_blank" rel="noopener">https://www.runoob.com/w3cnote/java-annotation.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2020/02/01/vue npm install/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -290,6 +1229,80 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2020/01/28/什么是javaBean、POJO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zwf0920">
+      <meta itemprop="description" content="zwf0920个人站，主要涉及java后端和框架技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwf0920">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/28/什么是javaBean、POJO/" class="post-title-link" itemprop="url">什么是javaBean、POJO</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-01-28 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-28T00:00:00+08:00">2020-01-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-10 20:41:49" itemprop="dateModified" datetime="2020-05-10T20:41:49+08:00">2020-05-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/小知识/" itemprop="url" rel="index"><span itemprop="name">小知识</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="什么是javaBean、POJO"><a href="#什么是javaBean、POJO" class="headerlink" title="什么是javaBean、POJO"></a>什么是javaBean、POJO</h3><p>参考资料：<a href="https://blog.csdn.net/chenchunlin526/article/details/69939337" target="_blank" rel="noopener">https://blog.csdn.net/chenchunlin526/article/details/69939337</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2019/08/02/数据量大时分页查询优化方案/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -313,10 +1326,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-08-02 15:36:37 / Modified: 12:19:59" itemprop="dateCreated datePublished" datetime="2019-08-02T15:36:37+08:00">2019-08-02</time>
+              <time title="Created: 2019-08-02 15:36:37" itemprop="dateCreated datePublished" datetime="2019-08-02T15:36:37+08:00">2019-08-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-10 18:06:17" itemprop="dateModified" datetime="2020-05-10T18:06:17+08:00">2020-05-10</time>
+              </span>
 
           
 
@@ -330,6 +1349,78 @@
 
       
           <h1 id="使用子查询优化"><a href="#使用子查询优化" class="headerlink" title="使用子查询优化"></a>使用子查询优化</h1><h1 id="使用ID限定优化"><a href="#使用ID限定优化" class="headerlink" title="使用ID限定优化"></a>使用ID限定优化</h1><h1 id="使用临时表优化"><a href="#使用临时表优化" class="headerlink" title="使用临时表优化"></a>使用临时表优化</h1><p>临时表用来存储id序列</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2019/07/27/MySQL底层数据结构总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zwf0920">
+      <meta itemprop="description" content="zwf0920个人站，主要涉及java后端和框架技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwf0920">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/27/MySQL底层数据结构总结/" class="post-title-link" itemprop="url">MySQL底层数据结构总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-27 15:36:37" itemprop="dateCreated datePublished" datetime="2019-07-27T15:36:37+08:00">2019-07-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-10 18:05:50" itemprop="dateModified" datetime="2020-05-10T18:05:50+08:00">2020-05-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><p>很容易形成链表，这样与顺序查询无异</p>
+<h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><p>不支持大数据量存储，数据大的话树的高度也会变大<br>所查询节点在几层就要经过几次磁盘IO</p>
+<h1 id="Hash表"><a href="#Hash表" class="headerlink" title="Hash表"></a>Hash表</h1><p>单条查询效率很高<br>范围查询效率低</p>
+<h1 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h1><p>节点横向扩展，控制树的高度<br>一个节点可存储n个数据，n可根据数据量调整</p>
+<p>也不支持范围查找</p>
+<h1 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h1><p>1.非叶子节点不存储data，只存储索引，可以放下更多索引<br>2.叶子姐顶啊不储存指针<br>3.顺序访问指针，提高区域访问的性能<br>叶子节点是完整的，并且以链表链接<br>中间节点冗余<br>范围查找效率高<br>MySql官方设置一个节点容量为16K （约为1170个数据）</p>
+<h1 id="MyISAM搜索引擎"><a href="#MyISAM搜索引擎" class="headerlink" title="MyISAM搜索引擎"></a>MyISAM搜索引擎</h1><p>（等待更新）</p>
+<h1 id="innoDB索引"><a href="#innoDB索引" class="headerlink" title="innoDB索引"></a>innoDB索引</h1><p>（等待更新）</p>
 
       
     </div>
@@ -419,215 +1510,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2019/07/27/MySQL底层数据结构总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zwf0920">
-      <meta itemprop="description" content="zwf0920个人站，主要涉及java后端和框架技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zwf0920">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/27/MySQL底层数据结构总结/" class="post-title-link" itemprop="url">MySQL底层数据结构总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-07-27 15:36:37" itemprop="dateCreated datePublished" datetime="2019-07-27T15:36:37+08:00">2019-07-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-01-29 10:08:11" itemprop="dateModified" datetime="2020-01-29T10:08:11+08:00">2020-01-29</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><p>很容易形成链表，这样与顺序查询无异</p>
-<h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><p>不支持大数据量存储，数据大的话树的高度也会变大<br>所查询节点在几层就要经过几次磁盘IO</p>
-<h1 id="Hash表"><a href="#Hash表" class="headerlink" title="Hash表"></a>Hash表</h1><p>单条查询效率很高<br>范围查询效率低</p>
-<h1 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h1><p>节点横向扩展，控制树的高度<br>一个节点可存储n个数据，n可根据数据量调整</p>
-<p>也不支持范围查找</p>
-<h1 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h1><p>1.非叶子节点不存储data，只存储索引，可以放下更多索引<br>2.叶子姐顶啊不储存指针<br>3.顺序访问指针，提高区域访问的性能<br>叶子节点是完整的，并且以链表链接<br>中间节点冗余<br>范围查找效率高<br>MySql官方设置一个节点容量为16K （约为1170个数据）</p>
-<h1 id="MyISAM搜索引擎"><a href="#MyISAM搜索引擎" class="headerlink" title="MyISAM搜索引擎"></a>MyISAM搜索引擎</h1><p>（等待更新）</p>
-<h1 id="innoDB索引"><a href="#innoDB索引" class="headerlink" title="innoDB索引"></a>innoDB索引</h1><p>（等待更新）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2019/07/18/欢迎使用CSDN-markdown编辑器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zwf0920">
-      <meta itemprop="description" content="zwf0920个人站，主要涉及java后端和框架技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zwf0920">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/18/欢迎使用CSDN-markdown编辑器/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-07-18 20:42:37" itemprop="dateCreated datePublished" datetime="2019-07-18T20:42:37+08:00">2019-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-07-20 15:37:46" itemprop="dateModified" datetime="2019-07-20T15:37:46+08:00">2019-07-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>@<a href="这里写自定义目录标题">TOC</a></p>
-<h1 id="欢迎来到周炜飞的个人博客"><a href="#欢迎来到周炜飞的个人博客" class="headerlink" title="欢迎来到周炜飞的个人博客"></a>欢迎来到周炜飞的个人博客</h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2019/07/18/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zwf0920">
-      <meta itemprop="description" content="zwf0920个人站，主要涉及java后端和框架技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zwf0920">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/18/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-07-18 14:16:33" itemprop="dateCreated datePublished" datetime="2019-07-18T14:16:33+08:00">2019-07-18</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
 
 
@@ -692,20 +1579,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
