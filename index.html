@@ -159,6 +159,76 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2020/05/18/使用反射在泛型为Integer的ArrayList中添加String类型的数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zwf0920">
+      <meta itemprop="description" content="zwf0920个人站，主要涉及java后端和框架技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwf0920">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/18/使用反射在泛型为Integer的ArrayList中添加String类型的数据/" class="post-title-link" itemprop="url">使用反射在泛型为Integer的ArrayList中添加String类型的数据</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-18 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-18T00:00:00+08:00">2020-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-19 07:56:47" itemprop="dateModified" datetime="2020-05-19T07:56:47+08:00">2020-05-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="使用反射在泛型为Integer的ArrayList中添加String类型的数据"><a href="#使用反射在泛型为Integer的ArrayList中添加String类型的数据" class="headerlink" title="使用反射在泛型为Integer的ArrayList中添加String类型的数据"></a>使用反射在泛型为Integer的ArrayList中添加String类型的数据</h1><p>记录一下一个面试题，这道题一看到我有点懵，照常理类型为Integer怎么能添加String类型。但是想到反射是可以打破这种限制的。笔试的时候我没写出来，在笔试完后我在idea上试了一下，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, InvocationTargetException, IllegalAccessException </span>&#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; list =<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Method method = list.getClass().getMethod(<span class="string">"add"</span>,Object.class);</span><br><span class="line">        method.invoke(list,<span class="string">"字符串"</span>);</span><br><span class="line">        method.invoke(list,<span class="string">"字符串2"</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果如下:</p>
+<p>[字符串, 字符串2]</p>
+<p>搜索了一些资料：<br>泛型只在编译期有效,在运行期会被擦除掉，运行期间获取Class，反射执行add方法。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2020/04/17/MySql使用参考/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1407,78 +1477,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2019/07/27/MySQL底层数据结构总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zwf0920">
-      <meta itemprop="description" content="zwf0920个人站，主要涉及java后端和框架技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zwf0920">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/27/MySQL底层数据结构总结/" class="post-title-link" itemprop="url">MySQL底层数据结构总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-07-27 15:36:37" itemprop="dateCreated datePublished" datetime="2019-07-27T15:36:37+08:00">2019-07-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-10 18:05:50" itemprop="dateModified" datetime="2020-05-10T18:05:50+08:00">2020-05-10</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><p>很容易形成链表，这样与顺序查询无异</p>
-<h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><p>不支持大数据量存储，数据大的话树的高度也会变大<br>所查询节点在几层就要经过几次磁盘IO</p>
-<h1 id="Hash表"><a href="#Hash表" class="headerlink" title="Hash表"></a>Hash表</h1><p>单条查询效率很高<br>范围查询效率低</p>
-<h1 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h1><p>节点横向扩展，控制树的高度<br>一个节点可存储n个数据，n可根据数据量调整</p>
-<p>也不支持范围查找</p>
-<h1 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h1><p>1.非叶子节点不存储data，只存储索引，可以放下更多索引<br>2.叶子姐顶啊不储存指针<br>3.顺序访问指针，提高区域访问的性能<br>叶子节点是完整的，并且以链表链接<br>中间节点冗余<br>范围查找效率高<br>MySql官方设置一个节点容量为16K （约为1170个数据）</p>
-<h1 id="MyISAM搜索引擎"><a href="#MyISAM搜索引擎" class="headerlink" title="MyISAM搜索引擎"></a>MyISAM搜索引擎</h1><p>（等待更新）</p>
-<h1 id="innoDB索引"><a href="#innoDB索引" class="headerlink" title="innoDB索引"></a>innoDB索引</h1><p>（等待更新）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2019/07/27/mysql ``的作用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1618,7 +1616,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1631,7 +1629,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

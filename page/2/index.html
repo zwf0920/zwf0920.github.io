@@ -159,6 +159,78 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2019/07/27/MySQL底层数据结构总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zwf0920">
+      <meta itemprop="description" content="zwf0920个人站，主要涉及java后端和框架技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwf0920">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/27/MySQL底层数据结构总结/" class="post-title-link" itemprop="url">MySQL底层数据结构总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-27 15:36:37" itemprop="dateCreated datePublished" datetime="2019-07-27T15:36:37+08:00">2019-07-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-10 18:05:50" itemprop="dateModified" datetime="2020-05-10T18:05:50+08:00">2020-05-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><p>很容易形成链表，这样与顺序查询无异</p>
+<h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><p>不支持大数据量存储，数据大的话树的高度也会变大<br>所查询节点在几层就要经过几次磁盘IO</p>
+<h1 id="Hash表"><a href="#Hash表" class="headerlink" title="Hash表"></a>Hash表</h1><p>单条查询效率很高<br>范围查询效率低</p>
+<h1 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h1><p>节点横向扩展，控制树的高度<br>一个节点可存储n个数据，n可根据数据量调整</p>
+<p>也不支持范围查找</p>
+<h1 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h1><p>1.非叶子节点不存储data，只存储索引，可以放下更多索引<br>2.叶子姐顶啊不储存指针<br>3.顺序访问指针，提高区域访问的性能<br>叶子节点是完整的，并且以链表链接<br>中间节点冗余<br>范围查找效率高<br>MySql官方设置一个节点容量为16K （约为1170个数据）</p>
+<h1 id="MyISAM搜索引擎"><a href="#MyISAM搜索引擎" class="headerlink" title="MyISAM搜索引擎"></a>MyISAM搜索引擎</h1><p>（等待更新）</p>
+<h1 id="innoDB索引"><a href="#innoDB索引" class="headerlink" title="innoDB索引"></a>innoDB索引</h1><p>（等待更新）</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://zwf0920.github.io/2019/07/18/欢迎使用CSDN-markdown编辑器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -359,7 +431,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -372,7 +444,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
